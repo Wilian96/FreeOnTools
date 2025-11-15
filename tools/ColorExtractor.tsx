@@ -5,10 +5,11 @@ import { UploadCloud, Copy, Check, Palette } from 'lucide-react';
 
 const ColorExtractor: React.FC = () => {
   const [imageUrl, setImageUrl] = useState<string | null>(null);
-  const [dominantColor, setDominantColor] = useState<string | null>(null);
+  const [colors, setColors] = useState<string[]>([]);
   const [error, setError] = useState<string | null>(null);
   const [isLoading, setIsLoading] = useState(false);
-  const [copied, setCopied] = useState(false);
+  const [lastCopied, setLastCopied] = useState<string | null>(null);
+  const [hovered, setHovered] = useState<string | null>(null);
   const canvasRef = useRef<HTMLCanvasElement>(null);
 
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -20,7 +21,7 @@ const ColorExtractor: React.FC = () => {
       }
       setIsLoading(true);
       setError(null);
-      setDominantColor(null);
+      setColors([]);
 
       const url = URL.createObjectURL(file);
       setImageUrl(url);
@@ -44,18 +45,23 @@ const ColorExtractor: React.FC = () => {
         const data = imageData.data;
         const colorCount: { [key: string]: number } = {};
 
-        for (let i = 0; i < data.length; i += 4) {
-          const rgb = `rgb(${data[i]}, ${data[i + 1]}, ${data[i + 2]})`;
-          colorCount[rgb] = (colorCount[rgb] || 0) + 1;
+        // Quantize colors to reduce unique values and get meaningful palette.
+        // We'll sample pixels (stride) for performance and round RGB components.
+        const sampleStride = 4 * 4; // sample every 4th pixel
+        const quant = (v: number) => Math.min(255, Math.max(0, Math.round(v / 16) * 16)); // quantize to 16-step and clamp to [0,255]
+
+        for (let i = 0; i < data.length; i += sampleStride) {
+          const r = quant(data[i]);
+          const g = quant(data[i + 1]);
+          const b = quant(data[i + 2]);
+          const hex = '#' + [r, g, b].map(n => n.toString(16).padStart(2, '0')).join('');
+          colorCount[hex] = (colorCount[hex] || 0) + 1;
         }
 
-        const dominant = Object.keys(colorCount).reduce((a, b) => colorCount[a] > colorCount[b] ? a : b);
-        
-        const rgbValues = dominant.match(/\d+/g);
-        if (rgbValues) {
-            const hex = "#" + (+rgbValues[0]).toString(16).padStart(2, '0') + (+rgbValues[1]).toString(16).padStart(2, '0') + (+rgbValues[2]).toString(16).padStart(2, '0');
-            setDominantColor(hex);
-        }
+        // Sort colors by frequency and take top 8 (or fewer if not available)
+        const sorted = Object.entries(colorCount).sort((a, b) => b[1] - a[1]);
+        const top = sorted.slice(0, 12).map(([hex]) => hex);
+        setColors(top);
         setIsLoading(false);
       };
       img.onerror = () => {
@@ -66,11 +72,10 @@ const ColorExtractor: React.FC = () => {
     }
   };
 
-  const copyToClipboard = () => {
-    if(!dominantColor) return;
-    navigator.clipboard.writeText(dominantColor);
-    setCopied(true);
-    setTimeout(() => setCopied(false), 2000);
+  const copyToClipboard = (hex: string) => {
+    navigator.clipboard.writeText(hex);
+    setLastCopied(hex);
+    setTimeout(() => setLastCopied(null), 2000);
   };
 
   return (
@@ -95,16 +100,40 @@ const ColorExtractor: React.FC = () => {
                     <img src={imageUrl} alt="Uploaded preview" className="rounded-lg shadow-lg max-h-80 mx-auto" />
                 </div>
             )}
-            {dominantColor && (
-                <div className="w-full md:w-1/2 flex flex-col items-center">
-                    <div className="w-32 h-32 rounded-full border-4 border-white shadow-lg mb-4" style={{ backgroundColor: dominantColor }}></div>
-                    <div className="flex items-center gap-2 p-3 bg-primary-dark/50 rounded-md">
-                        <span className="text-lg font-mono text-white">{dominantColor}</span>
-                         <button onClick={copyToClipboard} className="text-primary-light hover:text-white transition-colors">
-                            {copied ? <Check size={20} /> : <Copy size={20} />}
-                        </button>
+            {colors.length > 0 && (
+              <div className="w-full md:w-1/2 flex flex-col items-center">
+                <div className="grid grid-cols-6 gap-4 mb-4">
+                  {colors.map(hex => (
+                    <div key={hex} className="flex flex-col items-center relative">
+                      <div
+                        className="w-12 h-12 rounded-full border-2 border-white shadow-sm relative overflow-hidden"
+                        style={{ backgroundColor: hex }}
+                        onMouseEnter={() => setHovered(hex)}
+                        onMouseLeave={() => setHovered(null)}
+                      >
+                        {/* copy icon centered inside circle on hover */}
+                        {hovered === hex && (
+                          <button
+                            onClick={() => copyToClipboard(hex)}
+                            className="absolute inset-0 m-auto flex items-center justify-center bg-black/40 hover:bg-black/50 rounded-full w-10 h-10 transition-opacity"
+                            aria-label={`Copiar ${hex}`}
+                          >
+                            {lastCopied === hex ? <Check size={16} className="text-white" /> : <Copy size={16} className="text-white" />}
+                          </button>
+                        )}
+                      </div>
+
+                      {/* tooltip shown on hover */}
+                      {hovered === hex && (
+                        <div className="absolute -top-10 px-2 py-1 rounded bg-black/80 text-white text-xs font-mono whitespace-nowrap">
+                          {hex}
+                        </div>
+                      )}
                     </div>
+                  ))}
                 </div>
+                <p className="text-sm text-gray-400">Clique no ícone para copiar a cor</p>
+              </div>
             )}
         </div>
         
