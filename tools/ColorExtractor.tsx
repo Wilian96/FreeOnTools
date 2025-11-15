@@ -132,7 +132,7 @@ const ColorExtractor: React.FC = () => {
                     </div>
                   ))}
                 </div>
-                <p className="text-sm text-gray-400">Clique no ícone para copiar a cor</p>
+                <p className="text-sm text-gray-400">Clique na Cor para copiar</p>
               </div>
             )}
         </div>

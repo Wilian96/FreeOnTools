@@ -3,7 +3,7 @@ import PageWrapper from '../components/PageWrapper';
 import GlassCard from '../components/ui/GlassCard';
 import Button from '../components/ui/Button';
 // FIX: The 'AspectRatio' icon does not exist in 'lucide-react'. Replaced it with the 'Expand' icon.
-import { UploadCloud, Download, Image as ImageIcon, Expand } from 'lucide-react';
+import { UploadCloud, Download, Image as ImageIcon, Expand, ChevronUp, ChevronDown } from 'lucide-react';
 
 const ImageResizer: React.FC = () => {
   const [imageFile, setImageFile] = useState<File | null>(null);
@@ -16,6 +16,19 @@ const ImageResizer: React.FC = () => {
   const [error, setError] = useState<string | null>(null);
   const [isResizing, setIsResizing] = useState(false);
   const canvasRef = useRef<HTMLCanvasElement>(null);
+  const [presetOpen, setPresetOpen] = useState(false);
+  const [selectedPresetLabel, setSelectedPresetLabel] = useState<string | null>(null);
+  const [linked, setLinked] = useState<boolean>(false);
+
+  // Presets sorted from smallest to largest (by area)
+  const presets = [
+    { w: 512, h: 512 },
+    { w: 800, h: 600 },
+    { w: 1024, h: 768 },
+    { w: 1280, h: 720 },
+    { w: 1024, h: 1024 },
+    { w: 1920, h: 1080 },
+  ];
 
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
@@ -45,7 +58,12 @@ const ImageResizer: React.FC = () => {
     if (!imageUrl || !canvasRef.current) return;
     setIsResizing(true);
     setError(null);
-
+    // Prevent resizing to the same original dimensions
+    if (originalWidth > 0 && originalHeight > 0 && width === originalWidth && height === originalHeight) {
+      setError('As dimensões escolhidas são iguais às da imagem original. Selecione um tamanho diferente.');
+      setIsResizing(false);
+      return;
+    }
     const canvas = canvasRef.current;
     const ctx = canvas.getContext('2d');
     if (!ctx) {
@@ -70,23 +88,21 @@ const ImageResizer: React.FC = () => {
     img.src = imageUrl;
   };
   
-  const handleWidthChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const handleWidthChange = (e: React.ChangeEvent<HTMLInputElement>) => {
       const newWidth = parseInt(e.target.value, 10) || 0;
       setWidth(newWidth);
-      if (originalWidth > 0) {
-          const aspectRatio = originalHeight / originalWidth;
-          setHeight(Math.round(newWidth * aspectRatio));
+      if (linked) {
+        setHeight(newWidth);
       }
-  }
+    }
 
-  const handleHeightChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const handleHeightChange = (e: React.ChangeEvent<HTMLInputElement>) => {
       const newHeight = parseInt(e.target.value, 10) || 0;
       setHeight(newHeight);
-      if (originalHeight > 0) {
-          const aspectRatio = originalWidth / originalHeight;
-          setWidth(Math.round(newHeight * aspectRatio));
+      if (linked) {
+        setWidth(newHeight);
       }
-  }
+    }
 
 
   return (
@@ -95,6 +111,17 @@ const ImageResizer: React.FC = () => {
       description="Altere a largura e altura de suas imagens de forma rápida e proporcional. Faça o upload, defina as novas dimensões e baixe o resultado."
     >
       <GlassCard>
+        <style>{`
+          /* Hide native number input spinners while keeping functionality */
+          .no-spinner::-webkit-outer-spin-button,
+          .no-spinner::-webkit-inner-spin-button {
+            -webkit-appearance: none;
+            margin: 0;
+          }
+          .no-spinner {
+            -moz-appearance: textfield;
+          }
+        `}</style>
         <div className="flex flex-col items-center">
           <input type="file" id="image-upload" className="hidden" accept="image/*" onChange={handleFileChange} />
           <label htmlFor="image-upload" className="w-full max-w-md cursor-pointer bg-primary-dark/50 border-2 border-dashed border-primary-light/30 rounded-lg p-8 text-center hover:border-accent-blue-2 transition-colors">
@@ -107,18 +134,140 @@ const ImageResizer: React.FC = () => {
           <div className="mt-8 space-y-6">
             <div className="flex flex-wrap justify-center gap-4 items-center">
                 <div>
-                    <label htmlFor="width" className="block text-sm font-medium text-primary-light">Largura (px)</label>
-                    <input type="number" id="width" value={width} onChange={handleWidthChange} className="mt-1 w-32 bg-primary-dark/50 border-primary-light/20 rounded-md shadow-sm py-2 px-3 text-white focus:outline-none focus:ring-accent-blue-2 focus:border-accent-blue-2" />
+                  <label htmlFor="width" className="block text-sm font-medium text-primary-light">Largura (px)</label>
+                  <div className="relative mt-1">
+                    <input
+                      type="number"
+                      id="width"
+                      value={width}
+                      onChange={handleWidthChange}
+                      className="no-spinner w-32 pr-10 bg-primary-dark/50 border-primary-light/20 rounded-md shadow-sm py-2 px-3 text-white focus:outline-none focus:ring-accent-blue-2 focus:border-accent-blue-2"
+                    />
+                    <div className="absolute right-1 top-1/2 -translate-y-1/2 flex flex-col space-y-0.5">
+                      <button
+                        type="button"
+                        aria-label="Aumentar largura"
+                        onClick={() => setWidth(prev => {
+                          const next = prev + 1;
+                          if (linked) setHeight(next);
+                          return next;
+                        })}
+                        className="w-6 h-6 flex items-center justify-center text-accent-blue-2 bg-transparent"
+                      >
+                        <ChevronUp size={12} />
+                      </button>
+                      <button
+                        type="button"
+                        aria-label="Diminuir largura"
+                        onClick={() => setWidth(prev => {
+                          const next = Math.max(0, prev - 1);
+                          if (linked) setHeight(next);
+                          return next;
+                        })}
+                        className="w-6 h-6 flex items-center justify-center text-accent-blue-2 bg-transparent"
+                      >
+                        <ChevronDown size={12} />
+                      </button>
+                    </div>
+                  </div>
                 </div>
                 <div className="self-end text-2xl text-gray-400 pb-2">×</div>
                 <div>
-                    <label htmlFor="height" className="block text-sm font-medium text-primary-light">Altura (px)</label>
-                    <input type="number" id="height" value={height} onChange={handleHeightChange} className="mt-1 w-32 bg-primary-dark/50 border-primary-light/20 rounded-md shadow-sm py-2 px-3 text-white focus:outline-none focus:ring-accent-blue-2 focus:border-accent-blue-2" />
+                  <label htmlFor="height" className="block text-sm font-medium text-primary-light">Altura (px)</label>
+                  <div className="relative mt-1">
+                    <input
+                      type="number"
+                      id="height"
+                      value={height}
+                      onChange={handleHeightChange}
+                      className="no-spinner w-32 pr-10 bg-primary-dark/50 border-primary-light/20 rounded-md shadow-sm py-2 px-3 text-white focus:outline-none focus:ring-accent-blue-2 focus:border-accent-blue-2"
+                    />
+                    <div className="absolute right-1 top-1/2 -translate-y-1/2 flex flex-col space-y-0.5">
+                      <button
+                        type="button"
+                        aria-label="Aumentar altura"
+                        onClick={() => setHeight(prev => {
+                          const next = prev + 1;
+                          if (linked) setWidth(next);
+                          return next;
+                        })}
+                        className="w-6 h-6 flex items-center justify-center text-accent-blue-2 bg-transparent"
+                      >
+                        <ChevronUp size={12} />
+                      </button>
+                      <button
+                        type="button"
+                        aria-label="Diminuir altura"
+                        onClick={() => setHeight(prev => {
+                          const next = Math.max(0, prev - 1);
+                          if (linked) setWidth(next);
+                          return next;
+                        })}
+                        className="w-6 h-6 flex items-center justify-center text-accent-blue-2 bg-transparent"
+                      >
+                        <ChevronDown size={12} />
+                      </button>
+                    </div>
+                  </div>
                 </div>
             </div>
 
+            {/* Preset sizes dropdown (custom to allow styled options) */}
+            <div className="flex flex-wrap justify-center gap-3 items-center relative">
+              <label className="text-sm text-gray-300 self-center mr-2">Tamanhos rápidos (px):</label>
+              <div className="relative">
+                <button
+                  type="button"
+                  onClick={() => setPresetOpen(prev => !prev)}
+                  className="w-36 bg-primary-dark/50 border-primary-light/20 rounded-md shadow-sm py-1 px-3 text-white text-sm text-left flex items-center justify-between focus:outline-none focus:ring-accent-blue-2 focus:border-accent-blue-2"
+                >
+                  <span className="truncate">{selectedPresetLabel || 'Selecione um tamanho...'}</span>
+                  <button type="button" aria-hidden className="ml-2 p-1 rounded bg-transparent">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" className="text-accent-blue-2">
+                      <path d="M6 9l6 6 6-6" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                    </svg>
+                  </button>
+                </button>
+
+                {presetOpen && (
+                  <div className="absolute right-0 mt-2 w-44 bg-primary-dark/50 border border-primary-light/20 rounded-md shadow-lg z-50">
+                    {presets.map(p => (
+                      <button
+                        key={`${p.w}x${p.h}`}
+                        type="button"
+                        onClick={() => { setWidth(p.w); setHeight(p.h); setSelectedPresetLabel(`${p.w}×${p.h}`); setPresetOpen(false); }}
+                        className="w-full text-left px-3 py-1 hover:bg-primary-dark/60 text-white text-sm"
+                      >
+                        {p.w}×{p.h}
+                      </button>
+                    ))}
+                  </div>
+                )}
+              </div>
+              <div className="flex items-center text-sm text-gray-300 ml-4">
+                <label className="inline-flex items-center cursor-pointer select-none">
+                  <div
+                    role="switch"
+                    aria-checked={linked}
+                    tabIndex={0}
+                    onKeyDown={(e) => { if (e.key === ' ' || e.key === 'Enter') { e.preventDefault(); setLinked(v => !v); } }}
+                    onClick={() => setLinked(v => !v)}
+                    className={`relative inline-flex h-6 w-11 flex-shrink-0 items-center rounded-full transition-colors duration-200 focus:outline-none ${linked ? 'bg-accent-blue-2' : 'bg-primary-dark/50 border border-primary-light/20'}`}
+                  >
+                    <span className={`inline-block h-4 w-4 transform rounded-full bg-white shadow-sm transition-transform duration-200 ${linked ? 'translate-x-5' : 'translate-x-1'}`} />
+                  </div>
+                  <span className="ml-3">Vincular valores</span>
+                </label>
+              </div>
+            </div>
+
             <div className="flex justify-center">
-              <Button onClick={handleResize} disabled={isResizing || !width || !height}>
+              <Button
+                onClick={handleResize}
+                disabled={
+                  isResizing || !width || !height || (originalWidth > 0 && originalHeight > 0 && width === originalWidth && height === originalHeight)
+                }
+              >
                 {isResizing ? 'Redimensionando...' : 'Redimensionar'}
               </Button>
             </div>
