@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import PageWrapper from '../components/PageWrapper';
 import GlassCard from '../components/ui/GlassCard';
 import Button from '../components/ui/Button';
-import { Copy, Check, Combine } from 'lucide-react';
+import { Copy, Check, Combine, Clipboard, Trash2 } from 'lucide-react';
 
 const AccentRemover: React.FC = () => {
   const [inputText, setInputText] = useState('');
@@ -22,21 +22,47 @@ const AccentRemover: React.FC = () => {
     setTimeout(() => setCopied(false), 2000);
   };
 
+  const handlePasteInput = async () => {
+    try {
+      const clip = await navigator.clipboard.readText();
+      setInputText(clip);
+    } catch (err) {
+      console.error('Erro ao acessar a área de transferência:', err);
+    }
+  };
+
+  const handleClearInput = () => setInputText('');
+
+  const handleClearOutput = () => setOutputText('');
+
   return (
     <PageWrapper
       title="Removedor de Acentos"
       description="Limpe seu texto removendo todos os acentos e diacríticos de forma rápida e fácil. Ideal para normalizar dados ou preparar texto para sistemas que não suportam acentuação."
     >
       <GlassCard>
+        <style>{`
+          .custom-scroll::-webkit-scrollbar { width: 12px; }
+          .custom-scroll::-webkit-scrollbar-track { background: inherit; }
+          .custom-scroll::-webkit-scrollbar-thumb { background-color: rgba(255,255,255,0.06); border-radius: 999px; border: 3px solid transparent; background-clip: padding-box; }
+          .custom-scroll { scrollbar-width: thin; scrollbar-color: rgba(255,255,255,0.06) transparent; }
+        `}</style>
+
         <div className="space-y-4">
           <div>
             <label className="block text-sm font-medium text-primary-light mb-1">Texto Original</label>
-            <textarea
-              value={inputText}
-              onChange={(e) => setInputText(e.target.value)}
-              placeholder="Digite o texto com acentos aqui..."
-              className="w-full h-40 bg-primary-dark/50 border border-primary-light/20 rounded-md shadow-sm p-4 text-white focus:outline-none focus:ring-2 focus:ring-accent-blue-2 resize-y"
-            />
+            <div className="relative">
+              <textarea
+                value={inputText}
+                onChange={(e) => setInputText(e.target.value)}
+                placeholder="Digite o texto com acentos aqui..."
+                className="custom-scroll w-full h-40 bg-primary-dark/50 border border-primary-light/20 rounded-md shadow-sm p-4 text-white focus:outline-none focus:ring-2 focus:ring-accent-blue-2 resize-y"
+              />
+              <div className="absolute right-2 top-2 flex gap-2">
+                <Button variant="secondary" size="sm" onClick={handlePasteInput} icon={<Clipboard size={14} />} />
+                <Button variant="secondary" size="sm" onClick={handleClearInput} icon={<Trash2 size={14} />} />
+              </div>
+            </div>
           </div>
 
           <div className="text-center">
@@ -50,11 +76,12 @@ const AccentRemover: React.FC = () => {
                 readOnly
                 value={outputText}
                 placeholder="O resultado aparecerá aqui..."
-                className="w-full h-40 bg-primary-dark/50 border border-primary-light/20 rounded-md shadow-sm p-4 text-white focus:outline-none resize-y"
+                className="custom-scroll w-full h-40 bg-primary-dark/50 border border-primary-light/20 rounded-md shadow-sm p-4 text-white focus:outline-none resize-y"
               />
-               <Button variant="secondary" size="sm" className="absolute right-2 top-2" onClick={copyToClipboard} disabled={!outputText}>
-                    {copied ? <Check size={18} /> : <Copy size={18} />}
-                </Button>
+              <div className="absolute right-2 top-2 flex gap-2">
+                <Button variant="secondary" size="sm" onClick={copyToClipboard} disabled={!outputText} icon={copied ? <Check size={18} /> : <Copy size={18} />} />
+                <Button variant="secondary" size="sm" onClick={handleClearOutput} icon={<Trash2 size={16} />} />
+              </div>
             </div>
           </div>
         </div>

@@ -1,7 +1,8 @@
 import React, { useState, useMemo } from 'react';
 import PageWrapper from '../components/PageWrapper';
 import GlassCard from '../components/ui/GlassCard';
-import { Type } from 'lucide-react';
+import { Type, Clipboard, Trash2 } from 'lucide-react';
+import Button from '../components/ui/Button';
 
 const CharacterCounter: React.FC = () => {
   const [text, setText] = useState('');
@@ -11,6 +12,17 @@ const CharacterCounter: React.FC = () => {
     const withoutSpaces = text.replace(/\s/g, '').length;
     return { withSpaces, withoutSpaces };
   }, [text]);
+
+  const handlePasteFromClipboard = async () => {
+    try {
+      const clip = await navigator.clipboard.readText();
+      setText(clip);
+    } catch (err) {
+      console.error('Erro ao acessar a área de transferência:', err);
+    }
+  };
+
+  const handleClearText = () => setText('');
 
   return (
     <PageWrapper
@@ -28,12 +40,24 @@ const CharacterCounter: React.FC = () => {
                 <div className="text-sm text-gray-400">Caracteres (sem espaços)</div>
             </div>
         </div>
-        <textarea
-          value={text}
-          onChange={(e) => setText(e.target.value)}
-          placeholder="Digite ou cole seu texto aqui..."
-          className="w-full h-64 bg-primary-dark/50 border border-primary-light/20 rounded-md shadow-sm p-4 text-white focus:outline-none focus:ring-2 focus:ring-accent-blue-2 focus:border-accent-blue-2 sm:text-sm resize-y"
-        />
+        <style>{`
+          .custom-scroll::-webkit-scrollbar { width: 12px; }
+          .custom-scroll::-webkit-scrollbar-track { background: inherit; }
+          .custom-scroll::-webkit-scrollbar-thumb { background-color: rgba(255,255,255,0.06); border-radius: 999px; border: 3px solid transparent; background-clip: padding-box; }
+          .custom-scroll { scrollbar-width: thin; scrollbar-color: rgba(255,255,255,0.06) transparent; }
+        `}</style>
+        <div className="relative">
+          <textarea
+            value={text}
+            onChange={(e) => setText(e.target.value)}
+            placeholder="Digite ou cole seu texto aqui..."
+            className="custom-scroll w-full h-64 bg-primary-dark/50 border border-primary-light/20 rounded-md shadow-sm p-4 text-white focus:outline-none focus:ring-2 focus:ring-accent-blue-2 focus:border-accent-blue-2 sm:text-sm resize-y"
+          />
+          <div className="absolute right-2 top-2 flex gap-2">
+            <Button variant="secondary" size="sm" onClick={handlePasteFromClipboard} icon={<Clipboard size={14} />} />
+            <Button variant="secondary" size="sm" onClick={handleClearText} icon={<Trash2 size={14} />} />
+          </div>
+        </div>
       </GlassCard>
 
       <GlassCard className="mt-12">

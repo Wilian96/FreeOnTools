@@ -1,10 +1,12 @@
 import React, { useState, useMemo } from 'react';
 import PageWrapper from '../components/PageWrapper';
 import GlassCard from '../components/ui/GlassCard';
-import { Pilcrow } from 'lucide-react';
+import { Pilcrow, Clipboard, Trash2 } from 'lucide-react';
+import Button from '../components/ui/Button';
 
 const WordCounter: React.FC = () => {
   const [text, setText] = useState('');
+  const [ignoreEmptyLines, setIgnoreEmptyLines] = useState(true);
 
   const stats = useMemo(() => {
     const trimmedText = text.trim();
@@ -12,9 +14,26 @@ const WordCounter: React.FC = () => {
       return { words: 0, lines: 0 };
     }
     const words = trimmedText.split(/\s+/).filter(Boolean).length;
-    const lines = text.split('\n').filter(line => line.trim() !== '').length;
+    // Count lines robustly (supports CRLF/LF/CR).
+    // If `ignoreEmptyLines` is true, filter out lines that are only whitespace.
+    const allParts = text.split(/\r\n|\r|\n/);
+    const lines = allParts.length === 1 && allParts[0] === '' ? 0 : (
+      ignoreEmptyLines ? allParts.filter(line => line.trim() !== '').length : allParts.length
+    );
     return { words, lines };
-  }, [text]);
+  }, [text, ignoreEmptyLines]);
+
+  const handlePasteFromClipboard = async () => {
+    try {
+      const clip = await navigator.clipboard.readText();
+      setText(clip);
+    } catch (err) {
+      // fallback: do nothing (clipboard API may be blocked)
+      console.error('Erro ao acessar a área de transferência:', err);
+    }
+  };
+
+  const handleClearText = () => setText('');
 
   return (
     <PageWrapper
@@ -32,12 +51,40 @@ const WordCounter: React.FC = () => {
                 <div className="text-sm text-gray-400">Linhas</div>
             </div>
         </div>
-        <textarea
-          value={text}
-          onChange={(e) => setText(e.target.value)}
-          placeholder="Digite ou cole seu texto aqui..."
-          className="w-full h-64 bg-primary-dark/50 border border-primary-light/20 rounded-md shadow-sm p-4 text-white focus:outline-none focus:ring-2 focus:ring-accent-blue-2 focus:border-accent-blue-2 sm:text-sm resize-y"
-        />
+        <div className="flex items-center justify-end gap-3 mb-3 text-sm text-gray-300">
+          <label className="inline-flex items-center cursor-pointer select-none">
+            <div
+              role="switch"
+              aria-checked={ignoreEmptyLines}
+              tabIndex={0}
+              onKeyDown={(e) => { if (e.key === ' ' || e.key === 'Enter') { e.preventDefault(); setIgnoreEmptyLines(v => !v); } }}
+              onClick={() => setIgnoreEmptyLines(v => !v)}
+              className={`relative inline-flex h-6 w-11 flex-shrink-0 items-center rounded-full transition-colors duration-200 focus:outline-none ${ignoreEmptyLines ? 'bg-accent-blue-2' : 'bg-primary-dark/50 border border-primary-light/20'}`}
+            >
+              <span className={`inline-block h-4 w-4 transform rounded-full bg-white shadow-sm transition-transform duration-200 ${ignoreEmptyLines ? 'translate-x-5' : 'translate-x-1'}`} />
+            </div>
+            <span className="ml-3">Ignorar linhas vazias</span>
+          </label>
+        </div>
+        <style>{`
+          /* Custom scrollbar for textarea: track uses the element background (inherit), thumb slightly lighter for contrast */
+          .custom-scroll::-webkit-scrollbar { width: 12px; }
+          .custom-scroll::-webkit-scrollbar-track { background: inherit; }
+          .custom-scroll::-webkit-scrollbar-thumb { background-color: rgba(255,255,255,0.06); border-radius: 999px; border: 3px solid transparent; background-clip: padding-box; }
+          .custom-scroll { scrollbar-width: thin; scrollbar-color: rgba(255,255,255,0.06) transparent; }
+        `}</style>
+        <div className="relative">
+          <textarea
+            value={text}
+            onChange={(e) => setText(e.target.value)}
+            placeholder="Digite ou cole seu texto aqui..."
+            className="custom-scroll w-full h-64 bg-primary-dark/50 border border-primary-light/20 rounded-md shadow-sm p-4 text-white focus:outline-none focus:ring-2 focus:ring-accent-blue-2 focus:border-accent-blue-2 sm:text-sm resize-y"
+          />
+          <div className="absolute right-2 top-2 flex gap-2">
+            <Button variant="secondary" size="sm" onClick={handlePasteFromClipboard} icon={<Clipboard size={14} />} />
+            <Button variant="secondary" size="sm" onClick={handleClearText} icon={<Trash2 size={14} />} />
+          </div>
+        </div>
       </GlassCard>
 
       <GlassCard className="mt-12">

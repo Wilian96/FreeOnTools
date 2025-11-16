@@ -2,15 +2,39 @@ import React, { useState } from 'react';
 import PageWrapper from '../components/PageWrapper';
 import GlassCard from '../components/ui/GlassCard';
 import Button from '../components/ui/Button';
-import { Repeat } from 'lucide-react';
+import { Repeat, Clipboard, Trash2, Copy, Check } from 'lucide-react';
 
 const TextInverter: React.FC = () => {
   const [inputText, setInputText] = useState('');
   const [outputText, setOutputText] = useState('');
+  const [copied, setCopied] = useState(false);
 
   const invertText = () => {
     const result = inputText.split('').reverse().join('');
     setOutputText(result);
+  };
+
+  const handlePasteInput = async () => {
+    try {
+      const text = await navigator.clipboard.readText();
+      setInputText(text);
+    } catch (err) {
+      console.error('Erro ao acessar a área de transferência:', err);
+    }
+  };
+
+  const handleClearInput = () => setInputText('');
+
+  const handleClearOutput = () => setOutputText('');
+
+  const copyToClipboard = async () => {
+    try {
+      await navigator.clipboard.writeText(outputText);
+      setCopied(true);
+      setTimeout(() => setCopied(false), 2000);
+    } catch (err) {
+      console.error('Erro ao copiar para a área de transferência:', err);
+    }
   };
 
   return (
@@ -19,15 +43,27 @@ const TextInverter: React.FC = () => {
       description="Escreva qualquer coisa e veja a mágica acontecer! Esta ferramenta inverte seu texto letra por letra."
     >
       <GlassCard>
+        <style>{`
+          .custom-scroll::-webkit-scrollbar { width: 12px; }
+          .custom-scroll::-webkit-scrollbar-track { background: inherit; }
+          .custom-scroll::-webkit-scrollbar-thumb { background-color: rgba(255,255,255,0.06); border-radius: 999px; border: 3px solid transparent; background-clip: padding-box; }
+          .custom-scroll { scrollbar-width: thin; scrollbar-color: rgba(255,255,255,0.06) transparent; }
+        `}</style>
         <div className="space-y-4">
           <div>
             <label className="block text-sm font-medium text-primary-light mb-1">Seu Texto</label>
-            <textarea
-              value={inputText}
-              onChange={(e) => setInputText(e.target.value)}
-              placeholder="Digite algo para inverter..."
-              className="w-full h-32 bg-primary-dark/50 border border-primary-light/20 rounded-md shadow-sm p-4 text-white focus:outline-none focus:ring-2 focus:ring-accent-blue-2 resize-y"
-            />
+            <div className="relative">
+              <textarea
+                value={inputText}
+                onChange={(e) => setInputText(e.target.value)}
+                placeholder="Digite algo para inverter..."
+                className="custom-scroll w-full h-32 bg-primary-dark/50 border border-primary-light/20 rounded-md shadow-sm p-4 text-white focus:outline-none focus:ring-2 focus:ring-accent-blue-2 resize-y"
+              />
+              <div className="absolute right-2 top-2 flex gap-2">
+                <Button variant="secondary" size="sm" onClick={handlePasteInput} icon={<Clipboard size={14} />} />
+                <Button variant="secondary" size="sm" onClick={handleClearInput} icon={<Trash2 size={14} />} />
+              </div>
+            </div>
           </div>
 
           <div className="text-center">
@@ -36,12 +72,18 @@ const TextInverter: React.FC = () => {
 
           <div>
             <label className="block text-sm font-medium text-primary-light mb-1">Texto Invertido</label>
-            <textarea
-              readOnly
-              value={outputText}
-              placeholder="otxeT oditrevinI"
-              className="w-full h-32 bg-primary-dark/50 border border-primary-light/20 rounded-md shadow-sm p-4 text-white focus:outline-none resize-y"
-            />
+            <div className="relative">
+              <textarea
+                readOnly
+                value={outputText}
+                placeholder="otxeT oditrevinI"
+                className="custom-scroll w-full h-32 bg-primary-dark/50 border border-primary-light/20 rounded-md shadow-sm p-4 text-white focus:outline-none resize-y"
+              />
+              <div className="absolute right-2 top-2 flex gap-2">
+                <Button variant="secondary" size="sm" onClick={copyToClipboard} icon={copied ? <Check size={14} /> : <Copy size={14} />} />
+                <Button variant="secondary" size="sm" onClick={handleClearOutput} icon={<Trash2 size={14} />} />
+              </div>
+            </div>
           </div>
         </div>
       </GlassCard>
