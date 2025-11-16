@@ -24,7 +24,7 @@ const ContactPage: React.FC = () => {
         <div className="py-6">
           <div className="mb-4">
             <h3 className="text-2xl font-bold text-white">Contato</h3>
-            <p className="text-gray-300">Se preferir, envie-nos um e-mail. Clique no botão abaixo para abrir seu Outlook/Gmail de e-mail com o destinatário preenchido.</p>
+            <p className="text-gray-300">Se preferir, envie-nos um e-mail. Clique no botão abaixo para abrir seu Outlook/Gmail com o destinatário preenchido.</p>
           </div>
           <div className="flex flex-col sm:flex-row gap-4">
             <Button onClick={openMailClient} className="w-full sm:w-auto">
