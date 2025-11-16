@@ -79,7 +79,7 @@ const AccentRemover: React.FC = () => {
                 className="custom-scroll w-full h-40 bg-primary-dark/50 border border-primary-light/20 rounded-md shadow-sm p-4 text-white focus:outline-none resize-y"
               />
               <div className="absolute right-2 top-2 flex gap-2">
-                <Button variant="secondary" size="sm" onClick={copyToClipboard} disabled={!outputText} icon={copied ? <Check size={18} /> : <Copy size={18} />} />
+                <Button variant="secondary" size="sm" onClick={copyToClipboard} disabled={!outputText} icon={copied ? <Check size={14} /> : <Copy size={14} />} />
                 <Button variant="secondary" size="sm" onClick={handleClearOutput} icon={<Trash2 size={16} />} />
               </div>
             </div>
