@@ -80,7 +80,7 @@ const AccentRemover: React.FC = () => {
               />
               <div className="absolute right-2 top-2 flex gap-2">
                 <Button variant="secondary" size="sm" onClick={copyToClipboard} disabled={!outputText} icon={copied ? <Check size={14} /> : <Copy size={14} />} />
-                <Button variant="secondary" size="sm" onClick={handleClearOutput} icon={<Trash2 size={16} />} />
+                <Button variant="secondary" size="sm" onClick={handleClearOutput} icon={<Trash2 size={14} />} />
               </div>
             </div>
           </div>
