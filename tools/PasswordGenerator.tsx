@@ -87,7 +87,7 @@ const PasswordGenerator: React.FC = () => {
                 placeholder="Sua senha segura aqui..."
             />
             <Button variant="secondary" size="sm" className="absolute right-2 top-1/2 -translate-y-1/2" onClick={copyToClipboard} disabled={!password}>
-                {copied ? <Check size={18} /> : <Copy size={18} />}
+                {copied ? <Check size={14} /> : <Copy size={14} />}
             </Button>
         </div>
 
