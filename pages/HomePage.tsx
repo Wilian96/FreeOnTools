@@ -15,6 +15,7 @@ const HomePage: React.FC = () => {
           <ToolCard key={tool.path} tool={tool} />
         ))}
       </div>
+       <section className="mt-16 text-center">
         <h2 className="text-3xl font-bold text-white mb-4">Por que usar nossas ferramentas?</h2>
         <div className="max-w-3xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-8">
           <div className="p-4">
