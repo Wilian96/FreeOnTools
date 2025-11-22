@@ -15,20 +15,6 @@ const HomePage: React.FC = () => {
           <ToolCard key={tool.path} tool={tool} />
         ))}
       </div>
-       <section className="mt-16 text-center">
-        {/* <!-- FreeOnTools Anúncios --> */}
-        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5406946923069545" crossorigin="anonymous"></script>
-        <ins class="adsbygoogle"
-          style="display:block"
-          data-ad-client="ca-pub-5406946923069545"
-          data-ad-slot="2872095981"
-          data-ad-format="auto"
-          data-full-width-responsive="true">
-        </ins>
-        <script>
-          (adsbygoogle = window.adsbygoogle || []).push({});
-        </script>
-
         <h2 className="text-3xl font-bold text-white mb-4">Por que usar nossas ferramentas?</h2>
         <div className="max-w-3xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-8">
           <div className="p-4">
