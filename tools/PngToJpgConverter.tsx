@@ -49,6 +49,8 @@ const PngToJpgConverter: React.FC = () => {
     <PageWrapper
       title="Conversor PNG para JPG"
       description="Converta facilmente suas imagens PNG para o formato JPG. O fundo transparente será preenchido com branco."
+      canonicalUrl="https://free-on-tools.vercel.app/#/converter-png-para-jpg"
+      ogImage="https://free-on-tools.vercel.app/og-image.png" 
       schema={{
         "@context": "https://schema.org",
         "@type": "WebApplication",
