@@ -76,7 +76,23 @@ const PasswordGenerator: React.FC = () => {
     <PageWrapper
       title="Gerador de Senhas"
       description="Crie senhas fortes e seguras para proteger suas contas online. Personalize o comprimento e os tipos de caracteres."
+      schema={{
+        "@context": "https://schema.org",
+        "@type": "WebApplication",
+        "name": "Extrator de Cores Online",
+        "description": "Descubra a cor predominante em qualquer imagem. Faça o upload e obtenha o código HEX da cor dominante instantaneamente.",
+        "applicationCategory": "Utility",
+        "operatingSystem": "All",
+        "url": "https://free-on-tools.vercel.app/#/gerador-de-senhas"
+      }}
     >
+      {/* H1 SEO */}
+      <section className="text-center mb-10">
+        <h1 className="text-2xl font-bold text-accent-blue-2">
+          Gerador de Senhas Seguras
+        </h1>
+      </section>
+
       <GlassCard className="max-w-2xl mx-auto">
         <div className="relative mb-4">
             <input
@@ -199,7 +215,9 @@ const PasswordGenerator: React.FC = () => {
             <li>**Pais e Educadores:** Para ensinar boas práticas de segurança digital para crianças e adolescentes.</li>
         </ul>
       </GlassCard>
-
+      <div className="mt-8 text-gray-400 text-sm">
+        Esta ferramenta de Gerador de Senhas funciona diretamente no seu navegador, sem enviar nenhum dado para servidores externos. Personalize suas senhas com segurança e privacidade.
+      </div>
     </PageWrapper>
   );
 };

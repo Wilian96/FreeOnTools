@@ -39,9 +39,25 @@ const TextInverter: React.FC = () => {
 
   return (
     <PageWrapper
-      title="Inversor de Texto"
-      description="Escreva qualquer coisa e veja a mágica acontecer! Esta ferramenta inverte seu texto letra por letra."
+      title="Inversor de Texto Online - Inverta seu Texto Gratuitamente"
+      description="Use nossa ferramenta gratuita de Inversão de Texto para virar qualquer texto de trás para frente. Simples, rápido e fácil de usar!"
+      schema={{
+        "@context": "https://schema.org",
+        "@type": "WebApplication",
+        "name": "Extrator de Cores Online",
+        "description": "Use nossa ferramenta gratuita de Inversão de Texto para virar qualquer texto de trás para frente. Simples, rápido e fácil de usar!",
+        "applicationCategory": "Utility",
+        "operatingSystem": "All",
+        "url": "https://free-on-tools.vercel.app/#/inverter-texto"
+      }}
     >
+      {/* H1 SEO */}
+      <section className="text-center mb-10">
+        <h1 className="text-2xl font-bold text-accent-blue-2">
+          Inversor de Texto 
+        </h1>
+      </section>
+
       <GlassCard>
         <style>{`
           .custom-scroll::-webkit-scrollbar { width: 12px; }
@@ -146,6 +162,10 @@ const TextInverter: React.FC = () => {
             <li>**Amigos e Colegas:** Enviam mensagens codificadas de forma simples uns para os outros como uma brincadeira.</li>
         </ul>
       </GlassCard>
+      
+      <div className="mt-8 text-gray-400 text-sm">
+        Esta ferramenta de Inverter Texto funciona diretamente no seu navegador, sem enviar nenhum dado para servidores externos. Compatível com textos longos e multilinha.
+      </div>
 
     </PageWrapper>
   );

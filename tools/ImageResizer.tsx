@@ -107,9 +107,25 @@ const ImageResizer: React.FC = () => {
 
   return (
     <PageWrapper
-      title="Redimensionar Imagem"
-      description="Altere a largura e altura de suas imagens de forma rápida e proporcional. Faça o upload, defina as novas dimensões e baixe o resultado."
+      title="Redimensionador de Imagens Online"
+      description="Redimensione suas imagens facilmente. Ajuste largura e altura mantendo a proporção. Faça upload, defina o tamanho desejado e baixe a imagem redimensionada."
+      schema={{
+        "@context": "https://schema.org",
+        "@type": "WebApplication",
+        "name": "Extrator de Cores Online",
+        "description": "Descubra a cor predominante em qualquer imagem. Faça o upload e obtenha o código HEX da cor dominante instantaneamente.",
+        "applicationCategory": "Utility",
+        "operatingSystem": "All",
+        "url": "https://free-on-tools.vercel.app/#/redimensionar-imagem"
+      }}
     >
+      {/* H1 SEO */}
+      <section className="text-center mb-10">
+        <h1 className="text-2xl font-bold text-accent-blue-2">
+          Redimensionador de Imagens Online Gratuito
+        </h1>
+      </section>
+
       <GlassCard>
         <style>{`
           /* Hide native number input spinners while keeping functionality */
@@ -357,6 +373,9 @@ const ImageResizer: React.FC = () => {
             <li>**Blogueiros:** Padronizam o tamanho das imagens de destaque de seus posts para manter o blog visualmente coeso.</li>
         </ul>
       </GlassCard>
+      <div className="mt-8 text-gray-400 text-sm">
+        Esta ferramenta de Redimensionador de Imagens funciona diretamente no seu navegador, sem enviar nenhum dado para servidores externos. Compatível com JPG, PNG, WEBP e GIF.
+      </div>
 
     </PageWrapper>
   );

@@ -69,7 +69,23 @@ const ImageCompressor: React.FC = () => {
     <PageWrapper
       title="Compressor de Imagens"
       description="Reduza o tamanho do arquivo de suas imagens JPG, PNG, WEBP e GIF. Ajuste o nível de compressão para encontrar o equilíbrio perfeito entre tamanho e qualidade."
+      schema={{
+        "@context": "https://schema.org",
+        "@type": "WebApplication",
+        "name": "Compressor de Imagens",
+        "description": "Reduza o tamanho do arquivo de suas imagens JPG, PNG, WEBP e GIF. Ajuste o nível de compressão para encontrar o equilíbrio perfeito entre tamanho e qualidade.",
+        "applicationCategory": "Utility",
+        "operatingSystem": "All",
+        "url": "https://free-on-tools.vercel.app/#/comprimir-imagem"
+      }}
     >
+      {/* H1 SEO */}
+      <section className="text-center mb-10">
+        <h1 className="text-2xl font-bold text-accent-blue-2">
+          Compressor de Imagens Online Gratuito
+        </h1>
+      </section>
+    
       <GlassCard>
         <div className="flex flex-col items-center">
           <input
@@ -200,6 +216,10 @@ const ImageCompressor: React.FC = () => {
             <li>**Criadores de Conteúdo:** Reduzem o tamanho das imagens para posts em redes sociais e blogs, melhorando o engajamento.</li>
         </ul>
       </GlassCard>
+
+      <div className="mt-8 text-gray-400 text-sm">
+        Esta ferramenta de Compressor de Imagens funciona diretamente no seu navegador, sem enviar nenhum dado para servidores externos. Compatível com JPG, PNG, WEBP e GIF.
+      </div>
 
     </PageWrapper>
   )

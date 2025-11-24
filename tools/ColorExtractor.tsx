@@ -82,7 +82,25 @@ const ColorExtractor: React.FC = () => {
     <PageWrapper
       title="Extrator de Cores"
       description="Descubra a cor predominante em qualquer imagem. Faça o upload e obtenha o código HEX da cor dominante instantaneamente."
+      schema={{
+        "@context": "https://schema.org",
+        "@type": "WebApplication",
+        "name": "Extrator de Cores Online",
+        "description": "Descubra a cor predominante em qualquer imagem. Faça o upload e obtenha o código HEX da cor dominante instantaneamente.",
+        "applicationCategory": "Utility",
+        "operatingSystem": "All",
+        "url": "https://free-on-tools.vercel.app/#/extrair-cores-imagem"
+      }}
     >
+      {/* H1 SEO */}
+      <section className="text-center mb-10">
+        <h1 className="text-2xl font-bold text-accent-blue-2">
+          Extrator de Cores: Encontre a Cor Dominante em Suas Imagens
+        </h1>
+      </section>
+
+      
+
       <GlassCard>
         <div className="flex flex-col items-center">
           <input type="file" id="image-upload" className="hidden" accept="image/*" onChange={handleFileChange} />
@@ -209,6 +227,10 @@ const ColorExtractor: React.FC = () => {
             <li>**Decoradores de Interiores:** Identificam o tom exato de um móvel em uma revista para procurar uma tinta de parede correspondente.</li>
         </ul>
       </GlassCard>
+
+      <div className="mt-8 text-gray-400 text-sm">
+        Esta ferramenta de Extrator de Cores funciona diretamente no seu navegador, sem enviar nenhum dado para servidores externos. Compatível com textos longos, emojis e caracteres especiais.
+      </div>
 
     </PageWrapper>
   );

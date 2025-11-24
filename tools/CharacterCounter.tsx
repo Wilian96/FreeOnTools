@@ -26,9 +26,25 @@ const CharacterCounter: React.FC = () => {
 
   return (
     <PageWrapper
-      title="Contador de Caracteres"
-      description="Descubra o número exato de caracteres em seu texto, com e sem espaços, em tempo real."
+      title="Contador de Caracteres Online – Com e Sem Espaços"
+      description="Conte caracteres com e sem espaços em tempo real. Ferramenta online gratuita, precisa e rápida."
+      schema={{
+        "@context": "https://schema.org",
+        "@type": "WebApplication",
+        "name": "Contador de Caracteres",
+        "description": "Ferramenta online para contar caracteres com e sem espaços em tempo real.",
+        "applicationCategory": "Utility",
+        "operatingSystem": "All",
+        "url": "https://free-on-tools.vercel.app/#/contador-de-caracteres"
+      }}
     >
+      {/* H1 SEO */}
+      <section className="text-center mb-10">
+        <h1 className="text-2xl font-bold text-accent-blue-2">
+          Contador de Caracteres Online
+        </h1>
+      </section>
+
       <GlassCard>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
             <div className="bg-primary-dark/50 p-4 rounded-lg text-center">
@@ -120,6 +136,10 @@ const CharacterCounter: React.FC = () => {
             <li>**Estudantes:** Respondem a perguntas em plataformas de EAD que têm um limite de caracteres por resposta.</li>
         </ul>
       </GlassCard>
+      <div className="mt-8 text-gray-400 text-sm">
+        Esta ferramenta de contar caracteres funciona diretamente no seu navegador, sem enviar nenhum dado para servidores externos. Compatível com textos longos, emojis e caracteres especiais.
+      </div>
+
 
     </PageWrapper>
   );

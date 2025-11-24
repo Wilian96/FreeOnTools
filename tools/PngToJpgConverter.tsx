@@ -49,7 +49,23 @@ const PngToJpgConverter: React.FC = () => {
     <PageWrapper
       title="Conversor PNG para JPG"
       description="Converta facilmente suas imagens PNG para o formato JPG. O fundo transparente será preenchido com branco."
+      schema={{
+        "@context": "https://schema.org",
+        "@type": "WebApplication",
+        "name": "Extrator de Cores Online",
+        "description": "Descubra a cor predominante em qualquer imagem. Faça o upload e obtenha o código HEX da cor dominante instantaneamente.",
+        "applicationCategory": "Utility",
+        "operatingSystem": "All",
+        "url": "https://free-on-tools.vercel.app/#/converter-png-para-jpg"
+      }}
     >
+      {/* H1 SEO */}
+      <section className="text-center mb-10">
+        <h1 className="text-2xl font-bold text-accent-blue-2">
+          Conversor PNG para JPG
+        </h1>
+      </section>
+
       <GlassCard>
         <div className="flex flex-col items-center">
           <input type="file" id="image-upload" className="hidden" accept="image/png" onChange={handleFileChange} />
@@ -148,6 +164,10 @@ const PngToJpgConverter: React.FC = () => {
             <li>**Gerentes de Marketing:** Convertem materiais gráficos para criar versões mais leves para campanhas de e-mail marketing.</li>
         </ul>
       </GlassCard>
+      
+      <div className="mt-8 text-gray-400 text-sm">
+        Esta ferramenta de Converter PNG para JPG funciona diretamente no seu navegador, sem enviar nenhum dado para servidores externos. Compatível com imagens de alta resolução.
+      </div>
 
     </PageWrapper>
   );

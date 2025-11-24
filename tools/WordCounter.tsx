@@ -39,7 +39,23 @@ const WordCounter: React.FC = () => {
     <PageWrapper
       title="Contador de Palavras e Linhas"
       description="Cole ou digite seu texto abaixo para obter uma contagem instantânea do número de palavras e linhas."
+      schema={{
+        "@context": "https://schema.org",
+        "@type": "WebApplication",
+        "name": "Extrator de Cores Online",
+        "description": "Cole ou digite seu texto abaixo para obter uma contagem instantânea do número de palavras e linhas.",
+        "applicationCategory": "Utility",
+        "operatingSystem": "All",
+        "url": "https://free-on-tools.vercel.app/#/contador-de-palavras"
+      }}
     >
+      {/* H1 SEO */}
+      <section className="text-center mb-10">
+        <h1 className="text-2xl font-bold text-accent-blue-2">
+          Contador de Palavras e Linhas
+        </h1>
+      </section>
+
       <GlassCard>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
             <div className="bg-primary-dark/50 p-4 rounded-lg text-center">
@@ -143,6 +159,10 @@ const WordCounter: React.FC = () => {
             <li>**Profissionais de Marketing:** Criam cópias para anúncios e posts que sejam curtos, impactantes e dentro das diretrizes da plataforma.</li>
         </ul>
       </GlassCard>
+
+      <div className="mt-8 text-gray-400 text-sm">
+        Esta ferramenta de Contador de Palavras funciona diretamente no seu navegador, sem enviar nenhum dado para servidores externos. Compatível com textos longos e caracteres especiais.
+      </div>
 
     </PageWrapper>
   );
