@@ -82,6 +82,8 @@ const ColorExtractor: React.FC = () => {
     <PageWrapper
       title="Extrator de Cores"
       description="Descubra a cor predominante em qualquer imagem. Faça o upload e obtenha o código HEX da cor dominante instantaneamente."
+      canonicalUrl="https://free-on-tools.vercel.app/#/extrair-cores-imagem"
+      ogImage="https://free-on-tools.vercel.app/og-image-color-extractor.png"
       schema={{
         "@context": "https://schema.org",
         "@type": "WebApplication",
