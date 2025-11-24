@@ -8,8 +8,8 @@ const HomePage: React.FC = () => {
     <PageWrapper
       title="Ferramentas Online Gratuitas:  Rápidas, Seguras e Sem Limites"
       description="Coleção de ferramentas online gratuitas em português. Edição de fotos, utilidades para texto, compressão, conversores e muito mais. Rápido, seguro e 100% gratuito."
-      canonicalUrl="https://www.seusite.com/"
-      ogImage="https://www.seusite.com/og-image-home.jpg"
+      canonicalUrl="https://free-on-tools.vercel.app/"
+      ogImage="https://free-on-tools.vercel.app/og-image.png"
     >
       {/* HERO — SEO + Conversão */}
       <section className="text-center mb-10">
