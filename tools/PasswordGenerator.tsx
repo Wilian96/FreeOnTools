@@ -76,6 +76,8 @@ const PasswordGenerator: React.FC = () => {
     <PageWrapper
       title="Gerador de Senhas"
       description="Crie senhas fortes e seguras para proteger suas contas online. Personalize o comprimento e os tipos de caracteres."
+      canonicalUrl="https://free-on-tools.vercel.app/#/gerador-de-senhas"
+      ogImage="https://free-on-tools.vercel.app/og-image.png"
       schema={{
         "@context": "https://schema.org",
         "@type": "WebApplication",
