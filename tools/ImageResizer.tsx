@@ -109,6 +109,8 @@ const ImageResizer: React.FC = () => {
     <PageWrapper
       title="Redimensionador de Imagens Online"
       description="Redimensione suas imagens facilmente. Ajuste largura e altura mantendo a proporção. Faça upload, defina o tamanho desejado e baixe a imagem redimensionada."
+      canonicalUrl="https://free-on-tools.vercel.app/#/redimensionar-imagem"
+      ogImage="https://free-on-tools.vercel.app/og-image.png"
       schema={{
         "@context": "https://schema.org",
         "@type": "WebApplication",
