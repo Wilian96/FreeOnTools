@@ -38,8 +38,8 @@ const AccentRemover: React.FC = () => {
     <PageWrapper
       title="Removedor de Acentos: Converter Texto Sem Acentuação Online"
       description="Remova acentos do texto online com rapidez e precisão. Converta palavras acentuadas para versões sem acentos. Ideal para SEO, dados, formulários e normalização de texto."
-      canonicalUrl="https://www.seusite.com/removedor-de-acentos"
-      ogImage="https://www.seusite.com/og/removedor-de-acentos.jpg"
+      canonicalUrl="https://free-on-tools.vercel.app/#/remover-acentos"
+      ogImage="https://free-on-tools.vercel.app/#/remover-acentos/og/removedor-de-acentos.jpg"
     >
 
       {/* H1 SEO */}
