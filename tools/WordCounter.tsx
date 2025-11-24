@@ -39,6 +39,8 @@ const WordCounter: React.FC = () => {
     <PageWrapper
       title="Contador de Palavras e Linhas"
       description="Cole ou digite seu texto abaixo para obter uma contagem instantânea do número de palavras e linhas."
+      canonicalUrl="https://free-on-tools.vercel.app/#/contador-de-palavras"
+      ogImage="https://free-on-tools.vercel.app/og-image.png"
       schema={{
         "@context": "https://schema.org",
         "@type": "WebApplication",
