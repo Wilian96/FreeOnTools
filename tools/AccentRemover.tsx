@@ -40,6 +40,15 @@ const AccentRemover: React.FC = () => {
       description="Remova acentos do texto online com rapidez e precisão. Converta palavras acentuadas para versões sem acentos. Ideal para SEO, dados, formulários e normalização de texto."
       canonicalUrl="https://free-on-tools.vercel.app/#/remover-acentos"
       ogImage="https://free-on-tools.vercel.app/#/remover-acentos/og/removedor-de-acentos.jpg"
+      schema={{
+        "@context": "https://schema.org",
+        "@type": "WebApplication",
+        "name": "Contador de Caracteres",
+        "description": "Ferramenta online para contar caracteres com e sem espaços em tempo real.",
+        "applicationCategory": "Utility",
+        "operatingSystem": "All",
+        "url": "https://free-on-tools.vercel.app/#/remover-acentos"
+      }}
     >
 
       {/* H1 SEO */}
