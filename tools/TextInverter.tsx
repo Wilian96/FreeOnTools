@@ -41,6 +41,8 @@ const TextInverter: React.FC = () => {
     <PageWrapper
       title="Inversor de Texto Online - Inverta seu Texto Gratuitamente"
       description="Use nossa ferramenta gratuita de Inversão de Texto para virar qualquer texto de trás para frente. Simples, rápido e fácil de usar!"
+      canonicalUrl="https://free-on-tools.vercel.app/#/inverter-texto"
+      ogImage="https://free-on-tools.vercel.app/og-image.png"
       schema={{
         "@context": "https://schema.org",
         "@type": "WebApplication",
