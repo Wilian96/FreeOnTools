@@ -43,8 +43,8 @@ const AccentRemover: React.FC = () => {
       schema={{
         "@context": "https://schema.org",
         "@type": "WebApplication",
-        "name": "Contador de Caracteres",
-        "description": "Ferramenta online para contar caracteres com e sem espaços em tempo real.",
+        "name": "Removedor de Acentos",
+        "description": "Ferramenta online gratuita para remover acentos do texto e gerar versões sem acentuação. Ideal para SEO, programação e análise de dados.",
         "applicationCategory": "Utility",
         "operatingSystem": "All",
         "url": "https://free-on-tools.vercel.app/#/remover-acentos"
