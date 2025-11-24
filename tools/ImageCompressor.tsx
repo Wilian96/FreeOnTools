@@ -69,6 +69,8 @@ const ImageCompressor: React.FC = () => {
     <PageWrapper
       title="Compressor de Imagens"
       description="Reduza o tamanho do arquivo de suas imagens JPG, PNG, WEBP e GIF. Ajuste o nível de compressão para encontrar o equilíbrio perfeito entre tamanho e qualidade."
+      canonicalUrl="https://free-on-tools.vercel.app/#/comprimir-imagem"
+      ogImage="https://free-on-tools.vercel.app/og-image.png"
       schema={{
         "@context": "https://schema.org",
         "@type": "WebApplication",
