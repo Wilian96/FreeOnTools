@@ -9,7 +9,7 @@ const HomePage: React.FC = () => {
       title="Ferramentas Online Gratuitas:  Rápidas, Seguras e Sem Limites"
       description="Coleção de ferramentas online gratuitas em português. Edição de fotos, utilidades para texto, compressão, conversores e muito mais. Rápido, seguro e 100% gratuito."
       canonicalUrl="https://free-on-tools.vercel.app/"
-      ogImage="https://free-on-tools.vercel.app/img/home/og-home.png"
+      ogImage="https://free-on-tools.vercel.app/#/img/home/og-home.png"
     >
       {/* HERO — SEO + Conversão */}
       <section className="text-center mb-10">
