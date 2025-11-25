@@ -69,8 +69,8 @@ const ImageCompressor: React.FC = () => {
     <PageWrapper
       title="Compressor de Imagens"
       description="Reduza o tamanho do arquivo de suas imagens JPG, PNG, WEBP e GIF. Ajuste o nível de compressão para encontrar o equilíbrio perfeito entre tamanho e qualidade."
-      canonicalUrl="https://free-on-tools.vercel.app/#/comprimir-imagem"
-      ogImage="https://free-on-tools.vercel.app/og-image.png"
+      canonicalUrl="https://freeontools.com.br/#/comprimir-imagem"
+      ogImage="https://freeontools.com.br/og-image.png"
       schema={{
         "@context": "https://schema.org",
         "@type": "WebApplication",
@@ -78,7 +78,7 @@ const ImageCompressor: React.FC = () => {
         "description": "Reduza o tamanho do arquivo de suas imagens JPG, PNG, WEBP e GIF. Ajuste o nível de compressão para encontrar o equilíbrio perfeito entre tamanho e qualidade.",
         "applicationCategory": "Utility",
         "operatingSystem": "All",
-        "url": "https://free-on-tools.vercel.app/#/comprimir-imagem"
+        "url": "https://freeontools.com.br/#/comprimir-imagem"
       }}
     >
       {/* H1 SEO */}
@@ -222,6 +222,25 @@ const ImageCompressor: React.FC = () => {
       <div className="mt-8 text-gray-400 text-sm">
         Esta ferramenta de Compressor de Imagens funciona diretamente no seu navegador, sem enviar nenhum dado para servidores externos. Compatível com JPG, PNG, WEBP e GIF.
       </div>
+
+      {/* JSON-LD — ESSENCIAL PARA SEO */}
+      <script type="application/ld+json">
+        {JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "SoftwareApplication",
+          "name": "Removedor de Acentos",
+          "applicationCategory": "Utility",
+          "operatingSystem": "Web",
+          "url": "https://freeontools.com.br/#/comprimir-imagem",
+          "description":
+            "Reduza o tamanho do arquivo de suas imagens JPG, PNG, WEBP e GIF. Ajuste o nível de compressão para encontrar o equilíbrio perfeito entre tamanho e qualidade.",
+          "offers": {
+            "@type": "Offer",
+            "price": "0",
+            "priceCurrency": "BRL"
+          }
+        })}
+      </script>
 
     </PageWrapper>
   )

@@ -76,8 +76,8 @@ const PasswordGenerator: React.FC = () => {
     <PageWrapper
       title="Gerador de Senhas"
       description="Crie senhas fortes e seguras para proteger suas contas online. Personalize o comprimento e os tipos de caracteres."
-      canonicalUrl="https://free-on-tools.vercel.app/#/gerador-de-senhas"
-      ogImage="https://free-on-tools.vercel.app/og-image.png"
+      canonicalUrl="https://freeontools.com.br/#/gerador-de-senhas"
+      ogImage="https://freeontools.com.br/og-image.png"
       schema={{
         "@context": "https://schema.org",
         "@type": "WebApplication",
@@ -85,7 +85,7 @@ const PasswordGenerator: React.FC = () => {
         "description": "Descubra a cor predominante em qualquer imagem. Faça o upload e obtenha o código HEX da cor dominante instantaneamente.",
         "applicationCategory": "Utility",
         "operatingSystem": "All",
-        "url": "https://free-on-tools.vercel.app/#/gerador-de-senhas"
+        "url": "https://freeontools.com.br/#/gerador-de-senhas"
       }}
     >
       {/* H1 SEO */}
@@ -220,6 +220,26 @@ const PasswordGenerator: React.FC = () => {
       <div className="mt-8 text-gray-400 text-sm">
         Esta ferramenta de Gerador de Senhas funciona diretamente no seu navegador, sem enviar nenhum dado para servidores externos. Personalize suas senhas com segurança e privacidade.
       </div>
+
+      {/* JSON-LD — ESSENCIAL PARA SEO */}
+      <script type="application/ld+json">
+        {JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "SoftwareApplication",
+          "name": "Removedor de Acentos",
+          "applicationCategory": "Utility",
+          "operatingSystem": "Web",
+          "url": "https://freeontools.com.br/#/gerador-de-senhas",
+          "description":
+            "Ferramenta online gratuita para gerar senhas fortes e seguras, personalizando comprimento e tipos de caracteres.",
+          "offers": {
+            "@type": "Offer",
+            "price": "0",
+            "priceCurrency": "BRL"
+          }
+        })}
+      </script>
+
     </PageWrapper>
   );
 };

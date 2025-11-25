@@ -28,6 +28,8 @@ const CharacterCounter: React.FC = () => {
     <PageWrapper
       title="Contador de Caracteres Online – Com e Sem Espaços"
       description="Conte caracteres com e sem espaços em tempo real. Ferramenta online gratuita, precisa e rápida."
+      canonicalUrl="https://freeontools.com.br/#/contador-de-caracteres"
+      ogImage="https://freeontools.com.br/#/og-contador-de-caracteres.jpg"
       schema={{
         "@context": "https://schema.org",
         "@type": "WebApplication",
@@ -35,7 +37,7 @@ const CharacterCounter: React.FC = () => {
         "description": "Ferramenta online para contar caracteres com e sem espaços em tempo real.",
         "applicationCategory": "Utility",
         "operatingSystem": "All",
-        "url": "https://free-on-tools.vercel.app/#/contador-de-caracteres"
+        "url": "https://freeontools.com.br/#/contador-de-caracteres"
       }}
     >
       {/* H1 SEO */}
@@ -140,6 +142,23 @@ const CharacterCounter: React.FC = () => {
         Esta ferramenta de contar caracteres funciona diretamente no seu navegador, sem enviar nenhum dado para servidores externos. Compatível com textos longos, emojis e caracteres especiais.
       </div>
 
+      {/* JSON-LD — ESSENCIAL PARA SEO */}
+      <script type="application/ld+json">
+        {JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "SoftwareApplication",
+          "name": "Removedor de Acentos",
+          "applicationCategory": "Utility",
+          "operatingSystem": "Web",
+          "url": "https://freeontools.com.br/#/contador-de-caracteres",
+          "description": "Ferramenta online para contar caracteres com e sem espaços em tempo real.",
+          "offers": {
+            "@type": "Offer",
+            "price": "0",
+            "priceCurrency": "BRL"
+          }
+        })}
+      </script>
 
     </PageWrapper>
   );

@@ -39,8 +39,8 @@ const WordCounter: React.FC = () => {
     <PageWrapper
       title="Contador de Palavras e Linhas"
       description="Cole ou digite seu texto abaixo para obter uma contagem instantânea do número de palavras e linhas."
-      canonicalUrl="https://free-on-tools.vercel.app/#/contador-de-palavras"
-      ogImage="https://free-on-tools.vercel.app/og-image.png"
+      canonicalUrl="https://freeontools.com.br/#/contador-de-palavras"
+      ogImage="https://freeontools.com.br/og-image.png"
       schema={{
         "@context": "https://schema.org",
         "@type": "WebApplication",
@@ -48,7 +48,7 @@ const WordCounter: React.FC = () => {
         "description": "Cole ou digite seu texto abaixo para obter uma contagem instantânea do número de palavras e linhas.",
         "applicationCategory": "Utility",
         "operatingSystem": "All",
-        "url": "https://free-on-tools.vercel.app/#/contador-de-palavras"
+        "url": "https://freeontools.com.br/#/contador-de-palavras"
       }}
     >
       {/* H1 SEO */}
@@ -165,6 +165,25 @@ const WordCounter: React.FC = () => {
       <div className="mt-8 text-gray-400 text-sm">
         Esta ferramenta de Contador de Palavras funciona diretamente no seu navegador, sem enviar nenhum dado para servidores externos. Compatível com textos longos e caracteres especiais.
       </div>
+
+      {/* JSON-LD — ESSENCIAL PARA SEO */}
+      <script type="application/ld+json">
+        {JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "SoftwareApplication",
+          "name": "Removedor de Acentos",
+          "applicationCategory": "Utility",
+          "operatingSystem": "Web",
+          "url": "https://freeontools.com.br/#/contador-de-palavras",
+          "description":
+            "Cole ou digite seu texto abaixo para obter uma contagem instantânea do número de palavras e linhas.",
+          "offers": {
+            "@type": "Offer",
+            "price": "0",
+            "priceCurrency": "BRL"
+          }
+        })}
+      </script>
 
     </PageWrapper>
   );

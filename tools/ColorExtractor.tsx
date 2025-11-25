@@ -82,8 +82,8 @@ const ColorExtractor: React.FC = () => {
     <PageWrapper
       title="Extrator de Cores"
       description="Descubra a cor predominante em qualquer imagem. Faça o upload e obtenha o código HEX da cor dominante instantaneamente."
-      canonicalUrl="https://free-on-tools.vercel.app/#/extrair-cores-imagem"
-      ogImage="https://free-on-tools.vercel.app/og-image-color-extractor.png"
+      canonicalUrl="https://freeontools.com.br/#/extrair-cores-imagem"
+      ogImage="https://freeontools.com.br/og-image-color-extractor.png"
       schema={{
         "@context": "https://schema.org",
         "@type": "WebApplication",
@@ -91,7 +91,7 @@ const ColorExtractor: React.FC = () => {
         "description": "Descubra a cor predominante em qualquer imagem. Faça o upload e obtenha o código HEX da cor dominante instantaneamente.",
         "applicationCategory": "Utility",
         "operatingSystem": "All",
-        "url": "https://free-on-tools.vercel.app/#/extrair-cores-imagem"
+        "url": "https://freeontools.com.br/#/extrair-cores-imagem"
       }}
     >
       {/* H1 SEO */}
@@ -233,6 +233,25 @@ const ColorExtractor: React.FC = () => {
       <div className="mt-8 text-gray-400 text-sm">
         Esta ferramenta de Extrator de Cores funciona diretamente no seu navegador, sem enviar nenhum dado para servidores externos. Compatível com textos longos, emojis e caracteres especiais.
       </div>
+
+      {/* JSON-LD — ESSENCIAL PARA SEO */}
+      <script type="application/ld+json">
+        {JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "SoftwareApplication",
+          "name": "Removedor de Acentos",
+          "applicationCategory": "Utility",
+          "operatingSystem": "Web",
+          "url": "https://freeontools.com.br/#/extrair-cores-imagem",
+          "description":
+            "Descubra a cor predominante em qualquer imagem. Faça o upload e obtenha o código HEX da cor dominante instantaneamente.",
+          "offers": {
+            "@type": "Offer",
+            "price": "0",
+            "priceCurrency": "BRL"
+          }
+        })}
+      </script>
 
     </PageWrapper>
   );

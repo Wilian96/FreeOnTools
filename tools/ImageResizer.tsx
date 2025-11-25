@@ -109,8 +109,8 @@ const ImageResizer: React.FC = () => {
     <PageWrapper
       title="Redimensionador de Imagens Online"
       description="Redimensione suas imagens facilmente. Ajuste largura e altura mantendo a proporção. Faça upload, defina o tamanho desejado e baixe a imagem redimensionada."
-      canonicalUrl="https://free-on-tools.vercel.app/#/redimensionar-imagem"
-      ogImage="https://free-on-tools.vercel.app/og-image.png"
+      canonicalUrl="https://freeontools.com.br/#/redimensionar-imagem"
+      ogImage="https://freeontools.com.br/og-image.png"
       schema={{
         "@context": "https://schema.org",
         "@type": "WebApplication",
@@ -118,7 +118,7 @@ const ImageResizer: React.FC = () => {
         "description": "Descubra a cor predominante em qualquer imagem. Faça o upload e obtenha o código HEX da cor dominante instantaneamente.",
         "applicationCategory": "Utility",
         "operatingSystem": "All",
-        "url": "https://free-on-tools.vercel.app/#/redimensionar-imagem"
+        "url": "https://freeontools.com.br/#/redimensionar-imagem"
       }}
     >
       {/* H1 SEO */}
@@ -378,6 +378,25 @@ const ImageResizer: React.FC = () => {
       <div className="mt-8 text-gray-400 text-sm">
         Esta ferramenta de Redimensionador de Imagens funciona diretamente no seu navegador, sem enviar nenhum dado para servidores externos. Compatível com JPG, PNG, WEBP e GIF.
       </div>
+
+      {/* JSON-LD — ESSENCIAL PARA SEO */}
+      <script type="application/ld+json">
+        {JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "SoftwareApplication",
+          "name": "Removedor de Acentos",
+          "applicationCategory": "Utility",
+          "operatingSystem": "Web",
+          "url": "https://freeontools.com.br/#/redimensionar-imagem",
+          "description":
+            "Redimensione suas imagens facilmente. Ajuste largura e altura mantendo a proporção. Faça upload, defina o tamanho desejado e baixe a imagem redimensionada.",
+          "offers": {
+            "@type": "Offer",
+            "price": "0",
+            "priceCurrency": "BRL"
+          }
+        })}
+      </script>
 
     </PageWrapper>
   );

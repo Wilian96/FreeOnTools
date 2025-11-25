@@ -38,8 +38,8 @@ const AccentRemover: React.FC = () => {
     <PageWrapper
       title="Removedor de Acentos: Converter Texto Sem Acentuação Online"
       description="Remova acentos do texto online com rapidez e precisão. Converta palavras acentuadas para versões sem acentos. Ideal para SEO, dados, formulários e normalização de texto."
-      canonicalUrl="https://free-on-tools.vercel.app/#/remover-acentos"
-      ogImage="https://free-on-tools.vercel.app/#/remover-acentos/og/removedor-de-acentos.jpg"
+      canonicalUrl="https://freeontools.com.br/#/remover-acentos"
+      ogImage="https://freeontools.com.br/#/remover-acentos/og/removedor-de-acentos.jpg"
       schema={{
         "@context": "https://schema.org",
         "@type": "WebApplication",
@@ -47,7 +47,7 @@ const AccentRemover: React.FC = () => {
         "description": "Ferramenta online gratuita para remover acentos do texto e gerar versões sem acentuação. Ideal para SEO, programação e análise de dados.",
         "applicationCategory": "Utility",
         "operatingSystem": "All",
-        "url": "https://free-on-tools.vercel.app/#/remover-acentos"
+        "url": "https://freeontools.com.br/#/remover-acentos"
       }}
     >
 
@@ -188,7 +188,7 @@ const AccentRemover: React.FC = () => {
           "name": "Removedor de Acentos",
           "applicationCategory": "Utility",
           "operatingSystem": "Web",
-          "url": "https://free-on-tools.vercel.app/#/remover-acentos",
+          "url": "https://freeontools.com.br/#/remover-acentos",
           "description":
             "Ferramenta online gratuita para remover acentos do texto e gerar versões sem acentuação. Ideal para SEO, programação e análise de dados.",
           "offers": {

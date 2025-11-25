@@ -41,8 +41,8 @@ const TextInverter: React.FC = () => {
     <PageWrapper
       title="Inversor de Texto Online - Inverta seu Texto Gratuitamente"
       description="Use nossa ferramenta gratuita de Inversão de Texto para virar qualquer texto de trás para frente. Simples, rápido e fácil de usar!"
-      canonicalUrl="https://free-on-tools.vercel.app/#/inverter-texto"
-      ogImage="https://free-on-tools.vercel.app/og-image.png"
+      canonicalUrl="https://freeontools.com.br/#/inverter-texto"
+      ogImage="https://freeontools.com.br/og-image.png"
       schema={{
         "@context": "https://schema.org",
         "@type": "WebApplication",
@@ -50,7 +50,7 @@ const TextInverter: React.FC = () => {
         "description": "Use nossa ferramenta gratuita de Inversão de Texto para virar qualquer texto de trás para frente. Simples, rápido e fácil de usar!",
         "applicationCategory": "Utility",
         "operatingSystem": "All",
-        "url": "https://free-on-tools.vercel.app/#/inverter-texto"
+        "url": "https://freeontools.com.br/#/inverter-texto"
       }}
     >
       {/* H1 SEO */}
@@ -168,6 +168,25 @@ const TextInverter: React.FC = () => {
       <div className="mt-8 text-gray-400 text-sm">
         Esta ferramenta de Inverter Texto funciona diretamente no seu navegador, sem enviar nenhum dado para servidores externos. Compatível com textos longos e multilinha.
       </div>
+
+      {/* JSON-LD — ESSENCIAL PARA SEO */}
+      <script type="application/ld+json">
+        {JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "SoftwareApplication",
+          "name": "Removedor de Acentos",
+          "applicationCategory": "Utility",
+          "operatingSystem": "Web",
+          "url": "https://freeontools.com.br/#/inverter-texto",
+          "description":
+            "Use nossa ferramenta gratuita de Inversão de Texto para virar qualquer texto de trás para frente. Simples, rápido e fácil de usar!",
+          "offers": {
+            "@type": "Offer",
+            "price": "0",
+            "priceCurrency": "BRL"
+          }
+        })}
+      </script>
 
     </PageWrapper>
   );
