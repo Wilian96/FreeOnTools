@@ -8,6 +8,8 @@ const AboutPage: React.FC = () => {
     <PageWrapper
       title="Sobre o FreeonTools"
       description="Conheça a missão por trás do portal FreeonTools – Ferramentas Online Gratuitas e Poderosas."
+      canonicalUrl="https://freeontools.com.br/sobre"
+      ogImage="https://freeontools.com.br/og-home.png"
     >
       <GlassCard className="text-gray-300 space-y-8 leading-relaxed">
         <section>

@@ -4,16 +4,61 @@ interface PageWrapperProps {
   title: string;
   description: string;
   children: React.ReactNode;
+  canonicalUrl?: string;
+  ogImage?: string;
 }
 
-const PageWrapper: React.FC<PageWrapperProps> = ({ title, description, children }) => {
+const PageWrapper: React.FC<PageWrapperProps> = ({
+  title,
+  description,
+  children,
+  canonicalUrl,
+  ogImage
+}) => {
   React.useEffect(() => {
     document.title = `${title} | FreeOnTools`;
+
+    // Update Description
     const metaDescription = document.querySelector('meta[name="description"]');
     if (metaDescription) {
       metaDescription.setAttribute('content', description);
     }
-  }, [title, description]);
+
+    // Update OG Title
+    const ogTitle = document.querySelector('meta[property="og:title"]');
+    if (ogTitle) {
+      ogTitle.setAttribute('content', title);
+    }
+
+    // Update OG Description
+    const ogDesc = document.querySelector('meta[property="og:description"]');
+    if (ogDesc) {
+      ogDesc.setAttribute('content', description);
+    }
+
+    // Update OG Image
+    if (ogImage) {
+      const ogImg = document.querySelector('meta[property="og:image"]');
+      if (ogImg) {
+        ogImg.setAttribute('content', ogImage);
+      }
+      const twitterImg = document.querySelector('meta[name="twitter:image"]');
+      if (twitterImg) {
+        twitterImg.setAttribute('content', ogImage);
+      }
+    }
+
+    // Update Canonical URL
+    if (canonicalUrl) {
+      let linkCanonical = document.querySelector('link[rel="canonical"]');
+      if (!linkCanonical) {
+        linkCanonical = document.createElement('link');
+        linkCanonical.setAttribute('rel', 'canonical');
+        document.head.appendChild(linkCanonical);
+      }
+      linkCanonical.setAttribute('href', canonicalUrl);
+    }
+  }, [title, description, canonicalUrl, ogImage]);
 
   return (
     <div className="max-w-4xl mx-auto animate-fade-in">

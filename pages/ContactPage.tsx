@@ -19,6 +19,8 @@ const ContactPage: React.FC = () => {
     <PageWrapper
       title="Contato"
       description="Tem alguma dúvida, sugestão ou feedback? Entre em contato conosco."
+      canonicalUrl="https://freeontools.com.br/contato"
+      ogImage="https://freeontools.com.br/og-home.png"
     >
       <GlassCard>
         <div className="py-6">
