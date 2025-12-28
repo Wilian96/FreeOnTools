@@ -1,7 +1,3 @@
-# FreeOnTools - Ferramentas Online Gratuitas
-
-![FreeOnTools Home](og-home.png)
-
 # FreeonTools — Ferramentas Online Gratuitas e Poderosas
 
 ![FreeonTools Home](og-home.png)
