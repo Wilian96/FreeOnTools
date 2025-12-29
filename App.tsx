@@ -16,6 +16,9 @@ import TextInverter from './tools/TextInverter';
 import ColorExtractor from './tools/ColorExtractor';
 import PngToJpgConverter from './tools/PngToJpgConverter';
 import CharacterCounter from './tools/CharacterCounter';
+import MetaTagGenerator from './tools/MetaTagGenerator';
+import UtmLinkBuilder from './tools/UtmLinkBuilder';
+import KeywordAnalyzer from './tools/KeywordAnalyzer';
 import { TOOLS } from './constants';
 
 function App() {
@@ -29,7 +32,7 @@ function App() {
             <Route path="/contato" element={<ContactPage />} />
             <Route path="/politica-de-privacidade" element={<PrivacyPolicyPage />} />
             <Route path="/termos-de-uso" element={<TermsOfUsePage />} />
-            
+
             <Route path={TOOLS.IMAGE_COMPRESSOR.path} element={<ImageCompressor />} />
             <Route path={TOOLS.IMAGE_RESIZER.path} element={<ImageResizer />} />
             <Route path={TOOLS.PASSWORD_GENERATOR.path} element={<PasswordGenerator />} />
@@ -39,6 +42,9 @@ function App() {
             <Route path={TOOLS.COLOR_EXTRACTOR.path} element={<ColorExtractor />} />
             <Route path={TOOLS.PNG_TO_JPG.path} element={<PngToJpgConverter />} />
             <Route path={TOOLS.CHARACTER_COUNTER.path} element={<CharacterCounter />} />
+            <Route path={TOOLS.META_TAG_GENERATOR.path} element={<MetaTagGenerator />} />
+            <Route path={TOOLS.UTM_LINK_BUILDER.path} element={<UtmLinkBuilder />} />
+            <Route path={TOOLS.KEYWORD_ANALYZER.path} element={<KeywordAnalyzer />} />
 
           </Routes>
         </Layout>
