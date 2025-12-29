@@ -1,6 +1,6 @@
 import { Tool } from './types';
 // FIX: Replaced the non-exported 'Compress' icon with the 'Shrink' icon.
-import { Shrink, Expand, KeyRound, Pilcrow, Combine, Repeat, Palette, FileImage, Type, Globe, Link2, Search } from 'lucide-react';
+import { Shrink, Expand, KeyRound, Pilcrow, Combine, Repeat, Palette, FileImage, Type, Globe, Link2, Search, Code2, Binary, Activity } from 'lucide-react';
 
 export const TOOLS: { [key: string]: Tool } = {
   IMAGE_COMPRESSOR: {
@@ -74,5 +74,23 @@ export const TOOLS: { [key: string]: Tool } = {
     description: 'Analise a densidade e frequência de palavras em seu texto.',
     path: '/analisador-de-palavras-chave',
     icon: Search,
+  },
+  CODE_FORMATTER: {
+    title: 'Formatador de Código',
+    description: 'Formate e minifique JSON, HTML e CSS de maneira simples.',
+    path: '/formatador-de-codigo',
+    icon: Code2,
+  },
+  ENCODER_DECODER: {
+    title: 'Codificador / Decodificador',
+    description: 'Codifique e decodifique Base64, URL e entidades HTML.',
+    path: '/codificador-decodificador',
+    icon: Binary,
+  },
+  API_TESTER: {
+    title: 'Testador de API',
+    description: 'Teste seus endpoints e APIs REST com facilidade.',
+    path: '/testador-de-api',
+    icon: Activity,
   },
 };

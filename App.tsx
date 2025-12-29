@@ -19,6 +19,9 @@ import CharacterCounter from './tools/CharacterCounter';
 import MetaTagGenerator from './tools/MetaTagGenerator';
 import UtmLinkBuilder from './tools/UtmLinkBuilder';
 import KeywordAnalyzer from './tools/KeywordAnalyzer';
+import CodeFormatter from './tools/CodeFormatter';
+import EncoderDecoder from './tools/EncoderDecoder';
+import ApiTester from './tools/ApiTester';
 import { TOOLS } from './constants';
 
 function App() {
@@ -45,6 +48,9 @@ function App() {
             <Route path={TOOLS.META_TAG_GENERATOR.path} element={<MetaTagGenerator />} />
             <Route path={TOOLS.UTM_LINK_BUILDER.path} element={<UtmLinkBuilder />} />
             <Route path={TOOLS.KEYWORD_ANALYZER.path} element={<KeywordAnalyzer />} />
+            <Route path={TOOLS.CODE_FORMATTER.path} element={<CodeFormatter />} />
+            <Route path={TOOLS.ENCODER_DECODER.path} element={<EncoderDecoder />} />
+            <Route path={TOOLS.API_TESTER.path} element={<ApiTester />} />
 
           </Routes>
         </Layout>
