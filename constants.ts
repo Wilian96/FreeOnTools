@@ -45,10 +45,10 @@ export const TOOLS: { [key: string]: Tool } = {
     path: '/extrair-cores-imagem',
     icon: Palette,
   },
-  PNG_TO_JPG: {
-    title: 'Converter PNG para JPG',
-    description: 'Converta suas imagens do formato PNG para JPG rapidamente.',
-    path: '/converter-png-para-jpg',
+  IMAGE_CONVERTER: {
+    title: 'Conversor de Imagens',
+    description: 'Converta imagens entre diversos formatos (JPG, PNG, WEBP) instantaneamente.',
+    path: '/conversor-de-imagens',
     icon: FileImage,
   },
   CHARACTER_COUNTER: {
