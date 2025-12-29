@@ -1,6 +1,6 @@
 import { Tool } from './types';
 // FIX: Replaced the non-exported 'Compress' icon with the 'Shrink' icon.
-import { Shrink, Expand, KeyRound, Pilcrow, Combine, Repeat, Palette, FileImage, Type } from 'lucide-react';
+import { Shrink, Expand, KeyRound, Pilcrow, Combine, Repeat, Palette, FileImage, Type, Globe, Link2, Search } from 'lucide-react';
 
 export const TOOLS: { [key: string]: Tool } = {
   IMAGE_COMPRESSOR: {
@@ -56,5 +56,23 @@ export const TOOLS: { [key: string]: Tool } = {
     description: 'Conte caracteres com e sem espaços em seu texto.',
     path: '/contador-de-caracteres',
     icon: Type,
+  },
+  META_TAG_GENERATOR: {
+    title: 'Gerador de Meta Tags e SEO',
+    description: 'Crie Meta Tags, Sitemap, Open Graph e Twitter Cards para seu site.',
+    path: '/gerador-de-meta-tags',
+    icon: Globe,
+  },
+  UTM_LINK_BUILDER: {
+    title: 'Construtor de Links UTM',
+    description: 'Crie links rastreáveis com parâmetros UTM para suas campanhas.',
+    path: '/construtor-de-links-utm',
+    icon: Link2,
+  },
+  KEYWORD_ANALYZER: {
+    title: 'Analisador de Palavras-Chave',
+    description: 'Analise a densidade e frequência de palavras em seu texto.',
+    path: '/analisador-de-palavras-chave',
+    icon: Search,
   },
 };
