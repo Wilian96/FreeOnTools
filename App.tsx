@@ -22,12 +22,14 @@ import KeywordAnalyzer from './tools/KeywordAnalyzer';
 import CodeFormatter from './tools/CodeFormatter';
 import EncoderDecoder from './tools/EncoderDecoder';
 import ApiTester from './tools/ApiTester';
+import ScrollToTop from './components/ScrollToTop';
 import { TOOLS } from './constants';
 
 function App() {
   return (
     <div className="min-h-screen bg-gradient-to-br from-primary-dark via-accent-blue-3 to-primary-dark text-primary-light font-sans">
       <HashRouter>
+        <ScrollToTop />
         <Layout>
           <Routes>
             <Route path="/" element={<HomePage />} />
