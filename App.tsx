@@ -14,17 +14,22 @@ import WordCounter from './tools/WordCounter';
 import AccentRemover from './tools/AccentRemover';
 import TextInverter from './tools/TextInverter';
 import ColorExtractor from './tools/ColorExtractor';
-import PngToJpgConverter from './tools/PngToJpgConverter';
+import ImageConverter from './tools/ImageConverter';
 import CharacterCounter from './tools/CharacterCounter';
 import MetaTagGenerator from './tools/MetaTagGenerator';
 import UtmLinkBuilder from './tools/UtmLinkBuilder';
 import KeywordAnalyzer from './tools/KeywordAnalyzer';
+import CodeFormatter from './tools/CodeFormatter';
+import EncoderDecoder from './tools/EncoderDecoder';
+import ApiTester from './tools/ApiTester';
+import ScrollToTop from './components/ScrollToTop';
 import { TOOLS } from './constants';
 
 function App() {
   return (
     <div className="min-h-screen bg-gradient-to-br from-primary-dark via-accent-blue-3 to-primary-dark text-primary-light font-sans">
       <HashRouter>
+        <ScrollToTop />
         <Layout>
           <Routes>
             <Route path="/" element={<HomePage />} />
@@ -40,11 +45,14 @@ function App() {
             <Route path={TOOLS.ACCENT_REMOVER.path} element={<AccentRemover />} />
             <Route path={TOOLS.TEXT_INVERTER.path} element={<TextInverter />} />
             <Route path={TOOLS.COLOR_EXTRACTOR.path} element={<ColorExtractor />} />
-            <Route path={TOOLS.PNG_TO_JPG.path} element={<PngToJpgConverter />} />
+            <Route path={TOOLS.IMAGE_CONVERTER.path} element={<ImageConverter />} />
             <Route path={TOOLS.CHARACTER_COUNTER.path} element={<CharacterCounter />} />
             <Route path={TOOLS.META_TAG_GENERATOR.path} element={<MetaTagGenerator />} />
             <Route path={TOOLS.UTM_LINK_BUILDER.path} element={<UtmLinkBuilder />} />
             <Route path={TOOLS.KEYWORD_ANALYZER.path} element={<KeywordAnalyzer />} />
+            <Route path={TOOLS.CODE_FORMATTER.path} element={<CodeFormatter />} />
+            <Route path={TOOLS.ENCODER_DECODER.path} element={<EncoderDecoder />} />
+            <Route path={TOOLS.API_TESTER.path} element={<ApiTester />} />
 
           </Routes>
         </Layout>
