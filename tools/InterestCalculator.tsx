@@ -23,6 +23,7 @@ const InterestCalculator: React.FC = () => {
             interest = p * r * t;
             total = p + interest;
         } else {
+            // Formula: A = P(1 + r)^t
             total = p * Math.pow(1 + r, t);
             interest = total - p;
         }
@@ -32,7 +33,7 @@ const InterestCalculator: React.FC = () => {
             interest: interest,
             principal: p
         };
-    }, [initialAmount, interestRate, period, interestType]);
+    }, [initialAmount, interestRate, period, interestType, periodType]);
 
     const formatCurrency = (value: number) => {
         return new Intl.NumberFormat('pt-BR', {
@@ -85,7 +86,9 @@ const InterestCalculator: React.FC = () => {
                                             className="w-full bg-primary-dark/40 border border-primary-light/10 rounded-xl py-3 px-4 text-white text-sm focus:ring-2 focus:ring-accent-blue-2/50 focus:border-accent-blue-2 outline-none transition-all"
                                             placeholder="5"
                                         />
-                                        <div className="absolute right-4 top-1/2 -translate-y-1/2 text-gray-500 text-xs font-bold">%/período</div>
+                                        <div className="absolute right-4 top-1/2 -translate-y-1/2 text-gray-500 text-[10px] font-bold uppercase tracking-tight">
+                                            {periodType === 'monthly' ? '% ao mês' : '% ao ano'}
+                                        </div>
                                     </div>
                                 </div>
                                 <div className="space-y-2">
@@ -98,7 +101,9 @@ const InterestCalculator: React.FC = () => {
                                             className="w-full bg-primary-dark/40 border border-primary-light/10 rounded-xl py-3 px-4 text-white text-sm focus:ring-2 focus:ring-accent-blue-2/50 focus:border-accent-blue-2 outline-none transition-all"
                                             placeholder="12"
                                         />
-                                        <div className="absolute right-4 top-1/2 -translate-y-1/2 text-gray-500 text-xs font-bold">meses/anos</div>
+                                        <div className="absolute right-4 top-1/2 -translate-y-1/2 text-gray-500 text-[10px] font-bold uppercase tracking-tight">
+                                            {periodType === 'monthly' ? 'meses' : 'anos'}
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -193,7 +198,9 @@ const InterestCalculator: React.FC = () => {
                                 <p className="text-2xl font-black text-white">
                                     {((results.interest / (results.principal || 1)) * 100).toFixed(2)}%
                                 </p>
-                                <p className="text-[10px] text-gray-500 uppercase font-bold mt-1">Retorno sobre o capital</p>
+                                <p className="text-[10px] text-gray-500 uppercase font-bold mt-1">
+                                    Retorno total em {period} {periodType === 'monthly' ? 'meses' : 'anos'}
+                                </p>
                             </GlassCard>
                         </div>
                     </div>
