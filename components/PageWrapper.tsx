@@ -6,6 +6,7 @@ interface PageWrapperProps {
   children: React.ReactNode;
   canonicalUrl?: string;
   ogImage?: string;
+  wide?: boolean;
 }
 
 const PageWrapper: React.FC<PageWrapperProps> = ({
@@ -13,7 +14,8 @@ const PageWrapper: React.FC<PageWrapperProps> = ({
   description,
   children,
   canonicalUrl,
-  ogImage
+  ogImage,
+  wide = false
 }) => {
   React.useEffect(() => {
     document.title = `${title} | FreeOnTools`;
@@ -61,7 +63,7 @@ const PageWrapper: React.FC<PageWrapperProps> = ({
   }, [title, description, canonicalUrl, ogImage]);
 
   return (
-    <div className="max-w-4xl mx-auto animate-fade-in">
+    <div className={`${wide ? 'max-w-7xl' : 'max-w-4xl'} mx-auto animate-fade-in`}>
       <div className="text-center mb-10">
         <h1 className="text-4xl md:text-5xl font-bold text-white tracking-tight">{title}</h1>
         <p className="mt-4 text-lg text-gray-300">{description}</p>
