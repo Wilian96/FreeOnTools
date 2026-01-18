@@ -1,6 +1,6 @@
 import { Tool } from './types';
 // FIX: Replaced the non-exported 'Compress' icon with the 'Shrink' icon.
-import { Shrink, Expand, KeyRound, Pilcrow, Combine, Repeat, Palette, FileImage, Type, Globe, Link2, Search, Code2, Binary, Activity } from 'lucide-react';
+import { Shrink, Expand, KeyRound, Pilcrow, Combine, Repeat, Palette, FileImage, Type, Globe, Link2, Search, Code2, Binary, Activity, Coins, Percent, BadgePercent, Scale, Calculator, Wallet } from 'lucide-react';
 
 export const TOOLS: { [key: string]: Tool } = {
   IMAGE_COMPRESSOR: {
@@ -92,5 +92,41 @@ export const TOOLS: { [key: string]: Tool } = {
     description: 'Teste seus endpoints e APIs REST com facilidade.',
     path: '/testador-de-api',
     icon: Activity,
+  },
+  CURRENCY_CONVERTER: {
+    title: 'Conversor de Moedas',
+    description: 'Converta valores entre diferentes moedas com taxas atualizadas.',
+    path: '/conversor-de-moedas',
+    icon: Coins,
+  },
+  INTEREST_CALCULATOR: {
+    title: 'Calculadora de Juros',
+    description: 'Calcule juros simples e compostos para seus investimentos ou empréstimos.',
+    path: '/calculadora-de-juros',
+    icon: Percent,
+  },
+  DISCOUNT_CALCULATOR: {
+    title: 'Calculadora de Descontos',
+    description: 'Saiba quanto você economiza e o preço final após o desconto.',
+    path: '/calculadora-de-descontos',
+    icon: BadgePercent,
+  },
+  PERCENTAGE_CALCULATOR: {
+    title: 'Calculadora de Porcentagem',
+    description: 'Realize cálculos de porcentagem de forma rápida e simples.',
+    path: '/calculadora-de-porcentagem',
+    icon: Calculator,
+  },
+  BMI_CALCULATOR: {
+    title: 'Calculadora de IMC',
+    description: 'Calcule seu Índice de Massa Corporal e saiba sua classificação de peso.',
+    path: '/calculadora-de-imc',
+    icon: Scale,
+  },
+  BUDGET_PLANNER: {
+    title: 'Planejador de Orçamento',
+    description: 'Organize suas finanças pessoais listando receitas e despesas.',
+    path: '/planejador-de-orcamento',
+    icon: Wallet,
   },
 };

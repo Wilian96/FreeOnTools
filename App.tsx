@@ -22,6 +22,12 @@ import KeywordAnalyzer from './tools/KeywordAnalyzer';
 import CodeFormatter from './tools/CodeFormatter';
 import EncoderDecoder from './tools/EncoderDecoder';
 import ApiTester from './tools/ApiTester';
+import CurrencyConverter from './tools/CurrencyConverter';
+import InterestCalculator from './tools/InterestCalculator';
+import DiscountCalculator from './tools/DiscountCalculator';
+import PercentageCalculator from './tools/PercentageCalculator';
+import BMICalculator from './tools/BMICalculator';
+import BudgetPlanner from './tools/BudgetPlanner';
 import ScrollToTop from './components/ScrollToTop';
 import { TOOLS } from './constants';
 
@@ -53,6 +59,12 @@ function App() {
             <Route path={TOOLS.CODE_FORMATTER.path} element={<CodeFormatter />} />
             <Route path={TOOLS.ENCODER_DECODER.path} element={<EncoderDecoder />} />
             <Route path={TOOLS.API_TESTER.path} element={<ApiTester />} />
+            <Route path={TOOLS.CURRENCY_CONVERTER.path} element={<CurrencyConverter />} />
+            <Route path={TOOLS.INTEREST_CALCULATOR.path} element={<InterestCalculator />} />
+            <Route path={TOOLS.DISCOUNT_CALCULATOR.path} element={<DiscountCalculator />} />
+            <Route path={TOOLS.PERCENTAGE_CALCULATOR.path} element={<PercentageCalculator />} />
+            <Route path={TOOLS.BMI_CALCULATOR.path} element={<BMICalculator />} />
+            <Route path={TOOLS.BUDGET_PLANNER.path} element={<BudgetPlanner />} />
 
           </Routes>
         </Layout>
