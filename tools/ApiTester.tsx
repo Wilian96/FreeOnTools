@@ -101,15 +101,24 @@ const ApiTester: React.FC = () => {
                             <ChevronRight className="absolute right-3 top-1/2 -translate-y-1/2 pointer-events-none opacity-40 rotate-90" size={16} />
                         </div>
 
-                        <div className="flex-1 relative">
+                        <div className="flex-1 relative group">
                             <Globe className="absolute left-4 top-1/2 -translate-y-1/2 text-primary-light/40" size={18} />
                             <input
                                 type="text"
                                 value={url}
                                 onChange={(e) => setUrl(e.target.value)}
-                                className="w-full bg-primary-dark/40 border border-primary-light/10 rounded-xl py-3 pl-12 pr-4 text-white text-sm focus:ring-2 focus:ring-accent-blue-2/50 focus:border-accent-blue-2 outline-none transition-all placeholder:text-gray-600"
+                                className="w-full bg-primary-dark/40 border border-primary-light/10 rounded-xl py-3 pl-12 pr-12 text-white text-sm focus:ring-2 focus:ring-accent-blue-2/50 focus:border-accent-blue-2 outline-none transition-all placeholder:text-gray-600"
                                 placeholder="https://api.exemplo.com/v1/resource"
                             />
+                            {url && (
+                                <button
+                                    onClick={() => setUrl('')}
+                                    className="absolute right-4 top-1/2 -translate-y-1/2 p-1.5 text-gray-500 hover:text-white hover:bg-white/5 rounded-lg transition-all flex items-center justify-center"
+                                    title="Limpar URL"
+                                >
+                                    <X size={16} />
+                                </button>
+                            )}
                         </div>
 
                         <Button

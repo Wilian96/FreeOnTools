@@ -1,6 +1,6 @@
 import { Tool } from './types';
 // FIX: Replaced the non-exported 'Compress' icon with the 'Shrink' icon.
-import { Shrink, Expand, KeyRound, Pilcrow, Combine, Repeat, Palette, FileImage, Type, Globe, Link2, Search, Code2, Binary, Activity, Coins, Percent, BadgePercent, Scale, Calculator, Wallet } from 'lucide-react';
+import { Shrink, Expand, KeyRound, Pilcrow, Combine, Repeat, Palette, FileImage, Type, Globe, Link2, Search, Code2, Binary, Activity, Coins, Percent, BadgePercent, Scale, Calculator, Wallet, Image as ImageIcon, FileText, MapPin } from 'lucide-react';
 
 export const TOOLS: { [key: string]: Tool } = {
   IMAGE_COMPRESSOR: {
@@ -128,5 +128,23 @@ export const TOOLS: { [key: string]: Tool } = {
     description: 'Organize suas finanças pessoais listando receitas e despesas.',
     path: '/planejador-de-orcamento',
     icon: Wallet,
+  },
+  FAVICON_GENERATOR: {
+    title: 'Gerador de Favicon',
+    description: 'Converta suas imagens em ícones (favicon) para sites nos tamanhos padrão.',
+    path: '/gerador-de-favicon',
+    icon: ImageIcon,
+  },
+  LOREM_IPSUM: {
+    title: 'Gerador de Lorem Ipsum',
+    description: 'Gere textos de marcação para preencher seus layouts de design.',
+    path: '/gerador-de-lorem-ipsum',
+    icon: FileText,
+  },
+  CEP_SEARCH: {
+    title: 'Consultor de CEP e Endereço',
+    description: 'Localize endereços completos por CEP ou descubra o CEP por endereço.',
+    path: '/consultar-cep',
+    icon: MapPin,
   },
 };

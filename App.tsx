@@ -28,6 +28,9 @@ import DiscountCalculator from './tools/DiscountCalculator';
 import PercentageCalculator from './tools/PercentageCalculator';
 import BMICalculator from './tools/BMICalculator';
 import BudgetPlanner from './tools/BudgetPlanner';
+import FaviconGenerator from './tools/FaviconGenerator';
+import LoremIpsumGenerator from './tools/LoremIpsumGenerator';
+import CepSearch from './tools/CepSearch';
 import ScrollToTop from './components/ScrollToTop';
 import { TOOLS } from './constants';
 
@@ -65,6 +68,9 @@ function App() {
             <Route path={TOOLS.PERCENTAGE_CALCULATOR.path} element={<PercentageCalculator />} />
             <Route path={TOOLS.BMI_CALCULATOR.path} element={<BMICalculator />} />
             <Route path={TOOLS.BUDGET_PLANNER.path} element={<BudgetPlanner />} />
+            <Route path={TOOLS.FAVICON_GENERATOR.path} element={<FaviconGenerator />} />
+            <Route path={TOOLS.LOREM_IPSUM.path} element={<LoremIpsumGenerator />} />
+            <Route path={TOOLS.CEP_SEARCH.path} element={<CepSearch />} />
 
           </Routes>
         </Layout>
