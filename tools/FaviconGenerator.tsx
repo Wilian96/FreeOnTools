@@ -15,6 +15,7 @@ const FaviconGenerator: React.FC = () => {
     const [selectedImage, setSelectedImage] = useState<string | null>(null);
     const [fileName, setFileName] = useState<string>('');
     const [isSquare, setIsSquare] = useState(true);
+    const [borderRadius, setBorderRadius] = useState(0); // 0 to 50 (percentage)
     const [generationMode, setGenerationMode] = useState<'full' | 'single'>('full');
     const [copied, setCopied] = useState(false);
     const fileInputRef = useRef<HTMLInputElement>(null);
@@ -43,6 +44,22 @@ const FaviconGenerator: React.FC = () => {
             const img = new Image();
             img.src = selectedImage;
             img.onload = () => {
+                if (borderRadius > 0) {
+                    const r = (size * borderRadius) / 100;
+                    ctx.beginPath();
+                    ctx.moveTo(r, 0);
+                    ctx.lineTo(size - r, 0);
+                    ctx.quadraticCurveTo(size, 0, size, r);
+                    ctx.lineTo(size, size - r);
+                    ctx.quadraticCurveTo(size, size, size - r, size);
+                    ctx.lineTo(r, size);
+                    ctx.quadraticCurveTo(0, size, 0, size - r);
+                    ctx.lineTo(0, r);
+                    ctx.quadraticCurveTo(0, 0, r, 0);
+                    ctx.closePath();
+                    ctx.clip();
+                }
+
                 if (isSquare) {
                     ctx.drawImage(img, 0, 0, size, size);
                 } else {
@@ -184,6 +201,23 @@ const FaviconGenerator: React.FC = () => {
                                         <div className={`absolute top-1 w-4 h-4 bg-white rounded-full transition-all ${isSquare ? 'right-1' : 'left-1'}`} />
                                     </button>
                                 </div>
+
+                                <div className="space-y-3 p-4 bg-white/5 rounded-2xl border border-white/5">
+                                    <div className="flex items-center justify-between">
+                                        <div className="flex flex-col">
+                                            <span className="text-sm font-bold text-white">Cantos Arredondados</span>
+                                            <span className="text-[10px] text-gray-500">Arraie para ajustar ({borderRadius}%)</span>
+                                        </div>
+                                    </div>
+                                    <input
+                                        type="range"
+                                        min="0"
+                                        max="50"
+                                        value={borderRadius}
+                                        onChange={(e) => setBorderRadius(parseInt(e.target.value))}
+                                        className="w-full accent-accent-blue-2 bg-primary-dark/40 rounded-lg h-1.5 cursor-pointer"
+                                    />
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -207,7 +241,12 @@ const FaviconGenerator: React.FC = () => {
                                             {sizes.map(size => (
                                                 <div key={size} className="flex flex-col gap-2 group">
                                                     <div className="aspect-square bg-black/40 border border-white/10 rounded-xl flex items-center justify-center p-2 relative overflow-hidden">
-                                                        <img src={selectedImage} alt={`${size}x${size}`} className="max-w-full max-h-full object-contain" />
+                                                        <img
+                                                            src={selectedImage}
+                                                            alt={`${size}x${size}`}
+                                                            className="max-w-full max-h-full object-contain"
+                                                            style={{ borderRadius: `${borderRadius}%` }}
+                                                        />
                                                         <div className="absolute top-1 right-1 text-[8px] font-bold text-gray-500 bg-black/60 px-1 rounded">{size}x{size}</div>
                                                     </div>
                                                     <button
@@ -225,7 +264,12 @@ const FaviconGenerator: React.FC = () => {
                             ) : (
                                 <GlassCard className="p-12 flex flex-col items-center justify-center gap-6">
                                     <div className="w-16 h-16 bg-black/40 border border-white/10 rounded-xl flex items-center justify-center p-4">
-                                        <img src={selectedImage} alt="16x16" className="w-[16px] h-[16px]" />
+                                        <img
+                                            src={selectedImage}
+                                            alt="16x16"
+                                            className="w-[16px] h-[16px]"
+                                            style={{ borderRadius: `${borderRadius}%` }}
+                                        />
                                     </div>
                                     <div className="text-center">
                                         <h3 className="text-xl font-bold text-white">Favicon.ico (16x16) Pronto</h3>
